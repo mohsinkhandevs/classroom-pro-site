@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classroom Content Downloader — Batch Download Google Classroom Materials</title>
+  <meta name="description" content="Download and organize all your Google Classroom materials into structured ZIP files with one click. Supports PDF conversion, date filters, and file-type filters. Free Chrome & Edge extension." />
+  <meta property="og:title" content="Classroom Content Downloader" />
+  <meta property="og:description" content="The ultimate productivity extension for students and educators using Google Classroom." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav id="main-nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" id="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span>Classroom <strong>Downloader</strong></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="https://chromewebstore.google.com" target="_blank" class="btn btn-nav" id="nav-cta">Add to Chrome — Free</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://chromewebstore.google.com" target="_blank" class="btn btn-nav">Add to Chrome</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="container hero-content">
+      <div class="hero-badge" id="hero-badge">
+        <span class="badge-dot"></span>
+        Free Chrome &amp; Edge Extension · v5.0.1
+      </div>
+      <h1 class="hero-title">
+        Download All Your<br />
+        <span class="gradient-text">Google Classroom</span><br />
+        Materials in One Click
+      </h1>
+      <p class="hero-subtitle">
+        Stop clicking through dozens of folders. <strong>Classroom Content Downloader</strong> fetches every file from every course, organizes them into neat ZIP archives, and saves hours of repetitive work — completely free, completely private.
+      </p>
+      <div class="hero-actions">
+        <a href="https://chromewebstore.google.com" target="_blank" class="btn btn-primary" id="hero-cta-primary">
+          <svg width="20" height="20" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#fff" opacity=".15"/><path d="M24 8a16 16 0 1 0 0 32A16 16 0 0 0 24 8z" fill="#4285F4"/><path d="M24 8h16a16 16 0 0 1-8 13.86L24 16z" fill="#EA4335"/><path d="M8 24a16 16 0 0 1 8-13.86L24 16l-8 13.86A16 16 0 0 1 8 24z" fill="#FBBC05"/><path d="M24 32a8 8 0 1 1 0-16 8 8 0 0 1 0 16z" fill="#fff"/></svg>
+          Add to Chrome — It's Free
+        </a>
+        <a href="#how-it-works" class="btn btn-ghost" id="hero-cta-secondary">See How It Works →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">1-Click</span>
+          <span class="stat-label">Bulk Download</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Serverless &amp; Private</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">7</span>
+          <span class="stat-label">File Type Filters</span>
+        </div>
+      </div>
+    </div>
+    <!-- Mock UI Card -->
+    <div class="hero-mockup" id="hero-mockup">
+      <div class="mockup-card">
+        <div class="mockup-header">
+          <span class="mockup-logo">⚡ Classroom Pro <span class="mockup-badge">v5.0.1</span></span>
+          <div class="mockup-controls">
+            <span class="ctrl-dot ctrl-yellow"></span>
+            <span class="ctrl-dot ctrl-green"></span>
+          </div>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-label">📅 Sync From Date</div>
+          <div class="mockup-input">2025-01-01</div>
+          <div class="mockup-label" style="margin-top:10px;">📤 Export Format</div>
+          <div class="mockup-select">PDF (Recommended) ▾</div>
+          <div class="mockup-divider"></div>
+          <button class="mockup-btn mockup-btn-primary">📁 Download as ZIP (Organized)</button>
+          <button class="mockup-btn mockup-btn-alt">🌐 Download ALL Courses</button>
+          <div class="mockup-progress">
+            <div class="mockup-ring-wrap">
+              <svg class="mockup-ring" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="32" class="ring-bg"/>
+                <circle cx="40" cy="40" r="32" class="ring-fill" id="mock-ring"/>
+              </svg>
+              <span class="mockup-pct">78%</span>
+            </div>
+            <div>
+              <div class="mockup-prog-label">Downloading 24 files...</div>
+              <div class="mockup-prog-detail">19 / 24 files processed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ TRUSTED BY ═══════════ -->
+  <section class="trusted-bar">
+    <div class="container">
+      <p class="trusted-label">Built for learners at</p>
+      <div class="trusted-logos">
+        <span class="trusted-item">🎓 Universities</span>
+        <span class="trusted-item">🏫 High Schools</span>
+        <span class="trusted-item">📚 Online Courses</span>
+        <span class="trusted-item">👩‍🏫 Educators</span>
+        <span class="trusted-item">🧑‍💻 Students</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FEATURES ═══════════ -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-label">Powerful Features</div>
+      <h2 class="section-title">Everything You Need, Nothing You Don't</h2>
+      <p class="section-subtitle">Built by a CS student who was tired of clicking through dozens of folders every exam season.</p>
+      <div class="features-grid">
+
+        <div class="feature-card feature-card-large" id="feat-1">
+          <div class="feat-icon-wrap">📁</div>
+          <h3>One-Click ZIP Archives</h3>
+          <p>Download an entire course's files — assignments, materials, and announcements — organized into labelled folders inside a single ZIP file. No more hunting through individual posts.</p>
+          <div class="feat-tag">Core Feature</div>
+        </div>
+
+        <div class="feature-card" id="feat-2">
+          <div class="feat-icon-wrap">🌐</div>
+          <h3>Master Archive Mode</h3>
+          <p>Download <em>every file from every active course</em> simultaneously into one massive, structured archive. Perfect for end-of-semester backups.</p>
+        </div>
+
+        <div class="feature-card" id="feat-3">
+          <div class="feat-icon-wrap">🔄</div>
+          <h3>Auto PDF Conversion</h3>
+          <p>Automatically converts uploaded Word, Excel, and PowerPoint files into high-quality PDFs using Google Drive's native engine — no software needed.</p>
+        </div>
+
+        <div class="feature-card" id="feat-4">
+          <div class="feat-icon-wrap">🔍</div>
+          <h3>File Preview Modal</h3>
+          <p>Preview the complete list of discovered files before downloading. Search, select, deselect, or invert your selection — you're always in control.</p>
+        </div>
+
+        <div class="feature-card" id="feat-5">
+          <div class="feat-icon-wrap">📅</div>
+          <h3>Date Filtering</h3>
+          <p>Only download files uploaded after a specific date. Ideal for syncing just the latest materials without re-downloading your entire archive.</p>
+        </div>
+
+        <div class="feature-card" id="feat-6">
+          <div class="feat-icon-wrap">🎛️</div>
+          <h3>Smart File Filters</h3>
+          <p>Choose exactly which file types to include: PDFs, Word docs, PowerPoints, Excel sheets, images, videos, and more. Filter via the settings dashboard.</p>
+        </div>
+
+        <div class="feature-card feature-card-large" id="feat-7">
+          <div class="feat-icon-wrap">🛡️</div>
+          <h3>100% Serverless &amp; Private</h3>
+          <p>All file discovery, downloading, ZIP creation, and PDF conversion happens <strong>entirely inside your browser</strong>. Your data never touches any third-party server. The extension communicates only with Google's official, secure API endpoints.</p>
+          <div class="feat-tag feat-tag-green">Zero Data Collection</div>
+        </div>
+
+        <div class="feature-card" id="feat-8">
+          <div class="feat-icon-wrap">♻️</div>
+          <h3>Smart Retry Engine</h3>
+          <p>Automatically retries failed downloads with exponential backoff. Flaky network? The extension handles it gracefully so you don't lose files.</p>
+        </div>
+
+        <div class="feature-card" id="feat-9">
+          <div class="feat-icon-wrap">📊</div>
+          <h3>Download History</h3>
+          <p>Keeps a local log of your last 50 download sessions — date, course name, file count. Review and clear it anytime from the Options page.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ HOW IT WORKS ═══════════ -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">Up and Running in 60 Seconds</h2>
+      <div class="steps">
+        <div class="step" id="step-1">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>Install the Extension</h3>
+            <p>Click "Add to Chrome" from the Chrome Web Store. The extension installs in seconds with no account creation required.</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step" id="step-2">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>Sign In with Google</h3>
+            <p>Navigate to <strong>classroom.google.com</strong> and click the extension icon. Sign in securely using Google's official OAuth flow — we never see your password.</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step" id="step-3">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>Configure &amp; Preview</h3>
+            <p>Set your export format, date filter, and file-type preferences. Preview all discovered files and select exactly what you want to download.</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step" id="step-4">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h3>Download &amp; Done!</h3>
+            <p>Hit the download button. Watch the live progress ring as files are fetched, compressed, and saved directly to your computer as a structured ZIP.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ PRIVACY ═══════════ -->
+  <section class="privacy-section" id="privacy">
+    <div class="container">
+      <div class="privacy-grid">
+        <div class="privacy-text">
+          <div class="section-label">Your Data, Your Device</div>
+          <h2 class="section-title" style="text-align:left;">Built with Privacy-First Architecture</h2>
+          <p>We take a radical stance on privacy: <strong>we collect absolutely nothing.</strong> No analytics, no telemetry, no crash reports. The extension has no backend server — it doesn't exist because it doesn't need to.</p>
+          <ul class="privacy-list">
+            <li>
+              <span class="privacy-check">✓</span>
+              <div><strong>Zero Data Collection</strong><br/>Your files, credentials, and activity are never transmitted to us or any third party.</div>
+            </li>
+            <li>
+              <span class="privacy-check">✓</span>
+              <div><strong>No External Servers</strong><br/>All processing happens locally in your browser tab using standard Web APIs.</div>
+            </li>
+            <li>
+              <span class="privacy-check">✓</span>
+              <div><strong>Official Google APIs Only</strong><br/>The extension talks directly to Google's Classroom and Drive APIs using your own OAuth token.</div>
+            </li>
+            <li>
+              <span class="privacy-check">✓</span>
+              <div><strong>Local Storage Only</strong><br/>Your preferences and download history live in your browser's local storage and never leave your device.</div>
+            </li>
+            <li>
+              <span class="privacy-check">✓</span>
+              <div><strong>Google API Limited Use Compliant</strong><br/>Our use of Google APIs strictly adheres to Google's API Services User Data Policy and Limited Use requirements.</div>
+            </li>
+          </ul>
+          <a href="https://sites.google.com/view/classroom-pro-privacy/home" target="_blank" class="btn btn-ghost" id="privacy-policy-link">Read Full Privacy Policy →</a>
+        </div>
+        <div class="privacy-visual">
+          <div class="privacy-card">
+            <div class="pcard-icon">🔐</div>
+            <div class="pcard-title">End-to-End Local Processing</div>
+            <div class="pcard-flow">
+              <div class="pcard-node">Your Browser</div>
+              <div class="pcard-arrow">⟷</div>
+              <div class="pcard-node">Google APIs</div>
+            </div>
+            <div class="pcard-note">No middleman. No servers. No data leaks.</div>
+            <div class="pcard-badges">
+              <span class="pcard-badge">OAuth 2.0 Secure</span>
+              <span class="pcard-badge">MV3 Compliant</span>
+              <span class="pcard-badge">Open Source Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FAQ ═══════════ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list" id="faq-list">
+
+        <div class="faq-item" id="faq-1">
+          <button class="faq-q">Is the extension really free? <span class="faq-arrow">▾</span></button>
+          <div class="faq-a">Yes, completely. There are no premium tiers, no subscription fees, and no hidden costs. The extension is free to install and use indefinitely.</div>
+        </div>
+
+        <div class="faq-item" id="faq-2">
+          <button class="faq-q">Which browsers are supported? <span class="faq-arrow">▾</span></button>
+          <div class="faq-a">The extension is compatible with Google Chrome and Microsoft Edge (and any other Chromium-based browser that supports the Chrome Web Store). Firefox is not currently supported.</div>
+        </div>
+
+        <div class="faq-item" id="faq-3">
+          <button class="faq-q">Why does the extension need Google Drive access? <span class="faq-arrow">▾</span></button>
+          <div class="faq-a">Google Classroom materials are stored in Google Drive. The <code>drive.readonly</code> scope is required to fetch and download files. The <code>drive.file</code> scope is used exclusively to temporarily create a Google Doc copy of uploaded MS Office files for PDF conversion — the temporary copy is deleted immediately after the PDF is exported.</div>
+        </div>
+
+        <div class="faq-item" id="faq-4">
+          <button class="faq-q">Can it download files from multiple courses at once? <span class="faq-arrow">▾</span></button>
+          <div class="faq-a">Yes! The "Master Archive Mode" downloads materials from all of your active enrolled courses simultaneously, organized into a single ZIP file with sub-folders per course and assignment.</div>
+        </div>
+
+        <div class="faq-item" id="faq-5">
+          <button class="faq-q">Will it download Google Docs, Slides, and Sheets? <span class="faq-arrow">▾</span></button>
+          <div class="faq-a">Yes. Google Workspace files (Docs, Slides, Sheets, Drawings) are automatically exported during the download. You can choose to export them as PDFs or as their native Office format (DOCX, PPTX, XLSX) from the export format dropdown.</div>
+        </div>
+
+        <div class="faq-item" id="faq-6">
+          <button class="faq-q">What happens if a download fails? <span class="faq-arrow">▾</span></button>
+          <div class="faq-a">The extension has a built-in smart retry engine that automatically retries failed downloads up to 3 times with exponential backoff. If a file ultimately fails, it's logged and the rest of the download continues uninterrupted.</div>
+        </div>
+
+        <div class="faq-item" id="faq-7">
+          <button class="faq-q">Is my Google password shared with the extension? <span class="faq-arrow">▾</span></button>
+          <div class="faq-a">Absolutely not. Authentication is handled entirely by Google's official OAuth 2.0 system via the Chrome Identity API. We never see, receive, or store your Google credentials.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA BANNER ═══════════ -->
+  <section class="cta-banner" id="cta-banner">
+    <div class="cta-orb cta-orb-1"></div>
+    <div class="cta-orb cta-orb-2"></div>
+    <div class="container cta-inner">
+      <h2>Ready to Reclaim Your Time?</h2>
+      <p>Join students and educators who've automated the most tedious part of Google Classroom.</p>
+      <a href="https://chromewebstore.google.com" target="_blank" class="btn btn-primary btn-large" id="cta-final">
+        <svg width="20" height="20" viewBox="0 0 48 48" fill="none"><path d="M24 8h16a16 16 0 0 1-8 13.86L24 16z" fill="#EA4335"/><path d="M8 24a16 16 0 0 1 8-13.86L24 16l-8 13.86A16 16 0 0 1 8 24z" fill="#FBBC05"/><path d="M24 32a8 8 0 1 1 0-16 8 8 0 0 1 0 16z" fill="#fff"/></svg>
+        Install Free on Chrome
+      </a>
+      <p class="cta-sub">No signup required · Works instantly · 100% private</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">⚡</span>
+        <span>Classroom <strong>Downloader</strong></span>
+      </div>
+      <div class="footer-links">
+        <a href="https://sites.google.com/view/classroom-pro-privacy/home" target="_blank">Privacy Policy</a>
+        <a href="https://classroom-pro-downloader.mohsinkhandevs.com/tos" target="_blank">Terms of Service</a>
+        <a href="mailto:mohsinkhan.devs@gmail.com">Contact</a>
+        <a href="https://forms.gle/VzWq2Uxu9GXkv4XB7" target="_blank">Suggest a Feature</a>
+      </div>
+      <p class="footer-copy">© 2025–2026 Mohsin Khan. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
