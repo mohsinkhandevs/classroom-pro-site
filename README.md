@@ -4,8 +4,8 @@ Static site for Google OAuth API verification, deployed on a single subdomain vi
 
 | Page | URL |
 |------|-----|
-| 🏠 Home Page | `https://classroom-pro-downloader.mohsinkhandevs.com` |
-| 📜 Terms of Service | `https://classroom-pro-downloader.mohsinkhandevs.com/tos` |
+| 🏠 Home Page | `https://classroom.mohsinkhandevs.com` |
+| 📜 Terms of Service | `https://classroom.mohsinkhandevs.com/tos` |
 | 🔒 Privacy Policy | `https://sites.google.com/view/classroom-pro-privacy/home` |
 
 ---
@@ -16,8 +16,8 @@ Submit these exact URLs in the Google Cloud Console OAuth consent screen:
 
 | Field | Value |
 |-------|-------|
-| **Application Home Page** | `https://classroom-pro-downloader.mohsinkhandevs.com` |
-| **Terms of Service** | `https://classroom-pro-downloader.mohsinkhandevs.com/tos` |
+| **Application Home Page** | `https://classroom.mohsinkhandevs.com` |
+| **Terms of Service** | `https://classroom.mohsinkhandevs.com/tos` |
 | **Privacy Policy** | `https://sites.google.com/view/classroom-pro-privacy/home` |
 
 ---
@@ -42,7 +42,7 @@ git push -u origin main
 
 ### Step 3 — Add Custom Domain
 1. In your Vercel project → **Settings → Domains**
-2. Add: `classroom-pro-downloader.mohsinkhandevs.com`
+2. Add: `classroom.mohsinkhandevs.com`
 3. In your domain registrar (e.g., Namecheap), add a **CNAME** record:
    - **Host:** `classroom-pro-downloader`
    - **Value:** `cname.vercel-dns.com`
@@ -50,8 +50,8 @@ git push -u origin main
 4. Wait 1–5 minutes for DNS propagation → Vercel auto-provisions SSL ✅
 
 ### Step 4 — Verify
-- Visit `https://classroom-pro-downloader.mohsinkhandevs.com` → Home page loads
-- Visit `https://classroom-pro-downloader.mohsinkhandevs.com/tos` → ToS page loads
+- Visit `https://classroom.mohsinkhandevs.com` → Home page loads
+- Visit `https://classroom.mohsinkhandevs.com/tos` → ToS page loads
 
 ---
 
@@ -79,7 +79,7 @@ classroom-pro-site/
 
 **In `tos/index.html`:**
 - [ ] Confirm the **Effective Date** is accurate
-- [ ] All links already point to `https://classroom-pro-downloader.mohsinkhandevs.com` ✅
+- [ ] All links already point to `https://classroom.mohsinkhandevs.com` ✅
 
 ---
 
