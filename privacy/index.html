@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Classroom Content Downloader</title>
+  <meta name="description" content="Privacy Policy for Classroom Content Downloader, detailing data usage, Google API integrations, and limited use compliance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/home/style.css" />
+  <style>
+    /* Minimal styling to format the text specifically for this page */
+    .privacy-container {
+      max-width: 800px;
+      margin: 120px auto 60px;
+      padding: 0 20px;
+      color: #333;
+      line-height: 1.6;
+    }
+    .privacy-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #111;
+    }
+    .privacy-container h2 {
+      font-size: 1.8rem;
+      margin-top: 40px;
+      margin-bottom: 15px;
+      color: #222;
+      border-bottom: 2px solid #eaeaea;
+      padding-bottom: 5px;
+    }
+    .privacy-container h3 {
+      font-size: 1.3rem;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .privacy-container p {
+      margin-bottom: 15px;
+    }
+    .privacy-container ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+    .privacy-container li {
+      margin-bottom: 8px;
+    }
+    .privacy-container a {
+      color: #4285F4;
+      text-decoration: none;
+    }
+    .privacy-container a:hover {
+      text-decoration: underline;
+    }
+    .privacy-container strong {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav id="main-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" id="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span>Classroom <strong>Downloader</strong></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#how-it-works">How It Works</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+      </ul>
+      <a href="https://chromewebstore.google.com/detail/classroom-pro-downloader/cplfjpflnhfaggaaakihddomjkhikgik" target="_blank" class="btn btn-nav" id="nav-cta">Add to Chrome — Free</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/#features">Features</a>
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/#faq">FAQ</a>
+      <a href="https://chromewebstore.google.com/detail/classroom-pro-downloader/cplfjpflnhfaggaaakihddomjkhikgik" target="_blank" class="btn btn-nav">Add to Chrome</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════ PRIVACY CONTENT ═══════════ -->
+  <section class="privacy-container">
+    <h1>Privacy Policy</h1>
+    <p><strong>Effective Date:</strong> May 12, 2026</p>
+
+    <p>Welcome to <strong>Classroom Content Downloader</strong>! Your privacy is critically important to us. This Privacy Policy explains how we handle your data when you use our Chrome/Edge browser extension, particularly outlining our compliance with Google API Services requirements.</p>
+
+    <h2>1. Core Principle: Zero Data Collection</h2>
+    <p><strong>Classroom Content Downloader does NOT collect, store, transmit, or share your personal data with any external servers.</strong></p>
+    <p>The extension operates entirely locally within your web browser. We do not maintain remote servers, databases, analytics trackers, or user accounts. All data processing, file discovery, and downloading happens directly between your local browser and Google's official API servers.</p>
+
+    <h2>2. Google Workspace APIs and Data Usage</h2>
+    <p>To function properly, the extension requires access to your Google Classroom and Google Drive data via OAuth. The extension limits its access to only the scopes strictly necessary to provide its core features (batch file downloading and PDF conversion).</p>
+
+    <h3>A. Scopes Requested & Why We Need Them</h3>
+    <ul>
+      <li><strong>Google Classroom Scopes (Read-Only):</strong>
+        <ul>
+          <li><code>.../auth/classroom.courses.readonly</code></li>
+          <li><code>.../auth/classroom.coursework.me.readonly</code></li>
+          <li><code>.../auth/classroom.coursework.students.readonly</code></li>
+          <li><code>.../auth/classroom.courseworkmaterials.readonly</code></li>
+          <li><code>.../auth/classroom.announcements.readonly</code></li>
+          <li><strong>Purpose:</strong> To scan your active courses and compile a local list of attached files, materials, and assignments so you can select which ones to download.</li>
+        </ul>
+      </li>
+      <li><strong>Google Drive Scopes:</strong>
+        <ul>
+          <li><code>.../auth/drive.readonly</code><br>
+            <strong>Purpose:</strong> To securely read file metadata (like size and MIME type) and download the contents of the files you have selected.</li>
+          <li><code>.../auth/drive.file</code><br>
+            <strong>Purpose:</strong> To perform automatic PDF conversions of uploaded MS Office files (like <code>.docx</code>). When converting, the extension temporarily creates a Google Doc copy in your Drive, exports it to PDF, and immediately deletes the temporary copy.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>B. Limited Use Disclosure</h3>
+    <p>Classroom Content Downloader's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+    <p>Specifically:</p>
+    <ul>
+      <li>We do not use your data for advertising purposes.</li>
+      <li>We do not sell, rent, or trade your data to third parties.</li>
+      <li>We only use the requested access to read files for the sole purpose of allowing you to download them locally to your device as a ZIP file.</li>
+      <li>No human ever reads your data, as the extension operates strictly locally without a backend.</li>
+    </ul>
+
+    <h2>3. Data Storage</h2>
+    <p>The only data stored by the extension is your <strong>local preferences</strong> (such as your chosen export format and file filters). This data is stored securely in your browser's local storage engine (<code>chrome.storage.local</code>) and never leaves your device. You can clear these preferences at any time by uninstalling the extension.</p>
+
+    <h2>4. Third-Party Services</h2>
+    <p>We do not integrate with any third-party APIs, analytics platforms, or monetization trackers. All file downloads and conversions are handled directly by Google's native infrastructure.</p>
+
+    <h2>5. Changes to This Policy</h2>
+    <p>If we add new features that require different permissions, we will update this Privacy Policy and the Chrome Web Store listing. Because we do not collect your email address, you will be notified of major permission changes via browser prompts when the extension updates.</p>
+
+    <h2>6. Contact Us</h2>
+    <p>If you have any questions or concerns about this Privacy Policy, our use of Google APIs, or how your data is handled, please contact the developer at: <br>
+    <strong>Email:</strong> support@mohsinkhandevs.com <em>(Replace with actual support email)</em></p>
+  </section>
+
+  <!-- ═══════════ SCRIPT ═══════════ -->
+  <script>
+    // Simple Hamburger Menu Toggle
+    document.getElementById('hamburger').addEventListener('click', function() {
+      var menu = document.getElementById('mobile-menu');
+      if (menu.style.display === 'flex') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'flex';
+        menu.style.flexDirection = 'column';
+      }
+    });
+  </script>
+</body>
+</html>
