@@ -386,7 +386,8 @@ img { max-width: 100%; display: block; }
   opacity: 0.4;
 }
 
-/* ═══ Privacy ═══ */
+/* ═══ Privacy & Data Usage ═══ */
+.data-usage-section,
 .privacy-section { padding: 100px 0; }
 .privacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
 .privacy-text .section-label { display: block; text-align: left; }
