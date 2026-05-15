@@ -275,11 +275,13 @@
       <li><a href="#google-apis">2. Google API Scopes</a></li>
       <li><a href="#limited-use">3. Limited Use Disclosure</a></li>
       <li><a href="#local-storage">4. Local Storage</a></li>
-      <li><a href="#data-flow">5. How Data Flows</a></li>
-      <li><a href="#third-party">6. Third-Party Services</a></li>
-      <li><a href="#children">7. Children's Privacy</a></li>
-      <li><a href="#changes">8. Policy Changes</a></li>
-      <li><a href="#contact">9. Contact</a></li>
+      <li><a href="#data-security">5. Data Security &amp; Protection</a></li>
+      <li><a href="#data-flow">6. How Data Flows</a></li>
+      <li><a href="#third-party">7. Third-Party Services</a></li>
+      <li><a href="#children">8. Children's Privacy</a></li>
+      <li><a href="#data-retention">9. Data Retention &amp; Deletion</a></li>
+      <li><a href="#changes">10. Policy Changes</a></li>
+      <li><a href="#contact">11. Contact</a></li>
     </ul>
   </aside>
 
@@ -291,7 +293,7 @@
       <span class="pp-eyebrow">🔒 Legal Document</span>
       <h1 class="pp-title">Privacy Policy</h1>
       <p class="pp-meta">
-        <span>Effective Date:</span> May 12, 2026 &nbsp;·&nbsp;
+        <span>Effective Date:</span> May 15, 2026 &nbsp;·&nbsp;
         <span>Product:</span> Classroom Pro Downloader (Chrome &amp; Edge Extension) &nbsp;·&nbsp;
         <span>Developer:</span> Mohsin Khan
       </p>
@@ -433,12 +435,73 @@
         <li><strong>File-Type Filter Preferences:</strong> Your toggled file-type checkboxes (e.g. "include PDFs", "exclude images") are persisted locally.</li>
         <li><strong>Download History Log:</strong> A local log of your past 50 download sessions (course name, file count, date) is maintained for your own reference. This can be viewed and cleared at any time from the extension's Options page.</li>
       </ul>
-      <p>You can clear all stored preferences and history at any time by visiting the extension's <strong>Options page</strong> (click the ⚙️ gear icon inside the extension widget) or by uninstalling the extension.</p>
+      <p>You can clear all stored preferences and history at any time by visiting the extension's <strong>Options page</strong> (click the ⚙️ gear icon inside the extension widget) or by uninstalling the extension. Uninstalling the extension permanently removes all locally stored data.</p>
     </section>
 
     <!-- 5 -->
+    <section class="pp-section" id="data-security">
+      <h2><span class="sec-num">5</span> Data Security &amp; Protection Mechanisms</h2>
+      <p>We take the security and protection of your sensitive data seriously. Although Classroom Pro Downloader does not collect, store, or transmit any data to external servers, we implement the following industry-standard security measures to protect your data while it is being processed within your browser:</p>
+
+      <h3>🔐 Encryption in Transit</h3>
+      <p>All communication between your browser and Google's API services is encrypted using <strong>TLS 1.2+ (HTTPS)</strong>. This includes:</p>
+      <ul>
+        <li>OAuth 2.0 authentication requests to <code>accounts.google.com</code></li>
+        <li>Classroom API calls to <code>classroom.googleapis.com</code></li>
+        <li>Drive API calls to <code>www.googleapis.com</code> for file metadata and content downloads</li>
+      </ul>
+      <p>No unencrypted HTTP connections are ever used. All API endpoints are accessed exclusively over HTTPS.</p>
+
+      <h3>🔑 OAuth Token Security</h3>
+      <p>Authentication is handled through Google's official OAuth 2.0 protocol via the browser's built-in <code>chrome.identity</code> API. The following safeguards are in place:</p>
+      <ul>
+        <li><strong>No tokens are stored persistently:</strong> OAuth access tokens are held in browser session memory only during active use and are managed entirely by the browser's identity system.</li>
+        <li><strong>No tokens are transmitted externally:</strong> Access tokens are never sent to any server, endpoint, or service other than Google's official API infrastructure.</li>
+        <li><strong>Token scope limitation:</strong> Tokens are scoped to the minimum permissions required (read-only Classroom access and read-only Drive access). The extension cannot modify, delete, or share your Google Classroom or Drive data.</li>
+        <li><strong>User-revocable:</strong> You can revoke the extension's access at any time by visiting <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>.</li>
+      </ul>
+
+      <h3>🧠 In-Memory Processing Only</h3>
+      <p>All sensitive data processing occurs entirely within your browser's volatile memory (RAM). Specifically:</p>
+      <ul>
+        <li>File content downloaded from Google Drive is held in memory only during the ZIP packaging process.</li>
+        <li>Course metadata (course names, assignment titles, file names) is used only for organizing the ZIP folder structure and is not persisted after the download completes.</li>
+        <li>Once the ZIP file is generated and saved to your local Downloads folder, all in-memory data (file binaries, metadata, and tokens) is released by the browser's garbage collector.</li>
+        <li>No file content, course data, or user information is written to disk by the extension, except for the final ZIP file saved to your Downloads folder via the browser's native download mechanism.</li>
+      </ul>
+
+      <h3>🛡️ No External Server / No Backend</h3>
+      <p>The extension operates a <strong>zero-server architecture</strong>. There is no Developer-controlled backend, database, cloud function, or intermediary proxy. This eliminates the following categories of risk entirely:</p>
+      <ul>
+        <li>No server-side data breaches — there is no server to breach.</li>
+        <li>No data-at-rest vulnerabilities — sensitive data is never stored at rest on any external system.</li>
+        <li>No third-party data sharing — your data never passes through any system other than your browser and Google's official API infrastructure.</li>
+      </ul>
+
+      <h3>🔒 Content Security Policy (CSP)</h3>
+      <p>The extension operates under Chrome's Manifest V3 security model, which enforces strict Content Security Policy rules:</p>
+      <ul>
+        <li>No remote code execution — all JavaScript is bundled locally within the extension package.</li>
+        <li>No inline script injection — the extension's service worker and content scripts are statically declared in the manifest.</li>
+        <li>No third-party script loading — the only external network requests are to Google's authenticated API endpoints.</li>
+      </ul>
+
+      <h3>📋 Access Controls</h3>
+      <p>Access to user data within the extension is limited by design:</p>
+      <ul>
+        <li>The extension can only be activated on <code>classroom.google.com</code> pages (as declared in the manifest's content script matches).</li>
+        <li>No developer or third party has access to your Google data — the extension is fully automated and client-side.</li>
+        <li>The extension requests only read-only permissions for Classroom and Drive data. It cannot create, modify, or delete your Classroom assignments, courses, or Drive files (except for temporary copies created during Office-to-PDF conversion, which are immediately deleted).</li>
+      </ul>
+
+      <div class="callout callout-green">
+        <strong>Summary:</strong> Your data is protected by encryption in transit (TLS/HTTPS), secure token handling via the browser's native identity system, in-memory-only processing, and a zero-server architecture that eliminates remote data storage risks entirely.
+      </div>
+    </section>
+
+    <!-- 6 -->
     <section class="pp-section" id="data-flow">
-      <h2><span class="sec-num">5</span> How Your Data Flows</h2>
+      <h2><span class="sec-num">6</span> How Your Data Flows</h2>
       <p>Below is the complete data flow when you use the extension. No step involves any Developer-owned server.</p>
       <ol>
         <li><strong>Authentication:</strong> You click the extension icon. Your browser authenticates with Google via OAuth 2.0 using Chrome's built-in Identity API. An access token is issued by Google directly to your browser session.</li>
@@ -453,9 +516,9 @@
       </div>
     </section>
 
-    <!-- 6 -->
+    <!-- 7 -->
     <section class="pp-section" id="third-party">
-      <h2><span class="sec-num">6</span> Third-Party Services</h2>
+      <h2><span class="sec-num">7</span> Third-Party Services</h2>
       <p>The extension interacts with only the following external services. In each case, your browser communicates directly with the service — no Developer intermediary is involved.</p>
       <ul>
         <li><strong>Google Classroom API</strong> (<code>classroom.googleapis.com</code>) — to list your courses and materials.</li>
@@ -466,9 +529,9 @@
       <p>We do not integrate with any advertising networks, analytics platforms (e.g. Google Analytics, Mixpanel), crash-reporting services (e.g. Sentry), or any monetization trackers.</p>
     </section>
 
-    <!-- 7 -->
+    <!-- 8 -->
     <section class="pp-section" id="children">
-      <h2><span class="sec-num">7</span> Children's Privacy</h2>
+      <h2><span class="sec-num">8</span> Children's Privacy</h2>
       <p>Classroom Pro Downloader is designed to be used with Google Classroom, which is widely used by students of all ages, including children under 13. In compliance with the Children's Online Privacy Protection Act (COPPA) and similar regulations:</p>
       <ul>
         <li>The extension does not collect any personal information from any user, including children.</li>
@@ -477,9 +540,30 @@
       </ul>
     </section>
 
-    <!-- 8 -->
+    <!-- 9 -->
+    <section class="pp-section" id="data-retention">
+      <h2><span class="sec-num">9</span> Data Retention &amp; Deletion</h2>
+      <p>Classroom Pro Downloader retains data only as follows:</p>
+      <ul>
+        <li><strong>Google API Data (course info, file metadata, file content):</strong> Retained in browser memory <strong>only during active use</strong>. All data is released from memory immediately after the ZIP download completes or the browser tab is closed. No Google API data is ever persisted to disk or stored beyond the active session.</li>
+        <li><strong>OAuth Access Tokens:</strong> Managed by the browser's built-in identity system (<code>chrome.identity</code>). Tokens are session-scoped and are automatically invalidated when the browser session ends. You can also manually revoke tokens at <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>.</li>
+        <li><strong>Local Preferences &amp; History:</strong> User preferences (export format, file-type filters) and download history (up to 50 entries) are stored locally via <code>chrome.storage.local</code>. These contain <strong>no sensitive data</strong> — only setting values, course names, file counts, and timestamps.</li>
+      </ul>
+      <h3>How to Delete Your Data</h3>
+      <p>You have full control over all data associated with the extension:</p>
+      <ul>
+        <li><strong>Clear local preferences and history:</strong> Open the extension's Options page (⚙️ gear icon) and use the "Reset" or "Clear History" buttons.</li>
+        <li><strong>Revoke Google account access:</strong> Visit <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a> and remove "Classroom Pro Downloader" from your authorized applications.</li>
+        <li><strong>Complete data removal:</strong> Uninstalling the extension automatically and permanently removes all locally stored data (preferences, history). Combined with revoking Google access above, this constitutes a complete deletion of all data associated with the extension.</li>
+      </ul>
+      <div class="callout callout-blue">
+        <strong>Data Deletion Requests:</strong> If you need assistance with data deletion or have any concerns, contact us at <a href="mailto:mohsinkhan.devs@gmail.com">mohsinkhan.devs@gmail.com</a>. We will respond within <strong>5 business days</strong>.
+      </div>
+    </section>
+
+    <!-- 10 -->
     <section class="pp-section" id="changes">
-      <h2><span class="sec-num">8</span> Changes to This Policy</h2>
+      <h2><span class="sec-num">10</span> Changes to This Policy</h2>
       <p>If we introduce new features that require additional permissions or change how data is handled, this Privacy Policy will be updated and the "Effective Date" at the top will be revised accordingly.</p>
       <p>Because we do not collect your email address, you will be notified of material permission changes via:</p>
       <ul>
@@ -490,9 +574,9 @@
       <p>Continued use of the extension after a policy update constitutes acceptance of the revised policy. If you do not accept the revised policy, please uninstall the extension.</p>
     </section>
 
-    <!-- 9 -->
+    <!-- 11 -->
     <section class="pp-section" id="contact">
-      <h2><span class="sec-num">9</span> Contact</h2>
+      <h2><span class="sec-num">11</span> Contact</h2>
       <p>If you have any questions, concerns, or requests relating to this Privacy Policy or the extension's data practices, please contact the Developer directly:</p>
       <ul>
         <li><strong>Developer:</strong> Mohsin Khan</li>
