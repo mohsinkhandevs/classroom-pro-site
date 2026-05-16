@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Files — Classroom Pro Downloader</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #080b14;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container {
+      text-align: center;
+      max-width: 520px;
+    }
+    .logo { font-size: 2.5rem; margin-bottom: 16px; }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #94a3b8;
+      font-size: 0.92rem;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .spinner-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px;
+      background: rgba(59,130,246,0.06);
+      border: 1px solid rgba(59,130,246,0.15);
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+    .spinner {
+      width: 24px; height: 24px;
+      border: 3px solid rgba(59,130,246,0.2);
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .status { color: #93c5fd; font-size: 0.88rem; font-weight: 500; }
+    .instructions {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+    .instructions strong { color: #e2e8f0; }
+    .instructions ol { padding-left: 20px; }
+    .instructions li { margin-bottom: 6px; }
+    .error-box {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      color: #fca5a5;
+      font-size: 0.88rem;
+      display: none;
+    }
+    .success-box {
+      background: rgba(52,211,153,0.08);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      color: #6ee7b7;
+      font-size: 0.88rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">⚡</div>
+  <h1>Classroom Pro Downloader</h1>
+  <p class="subtitle">Please select the files you'd like to download. This grants the extension temporary access to read your Classroom attachments.</p>
+
+  <div class="spinner-wrap" id="loading-state">
+    <div class="spinner"></div>
+    <span class="status" id="status-text">Loading file selector...</span>
+  </div>
+
+  <div class="instructions" id="instructions">
+    <strong>Quick Guide:</strong>
+    <ol>
+      <li>A file picker will appear shortly</li>
+      <li>Press <strong>Ctrl+A</strong> (or <strong>Cmd+A</strong> on Mac) to select all files</li>
+      <li>Click <strong>"Select"</strong> to confirm</li>
+      <li>This tab will close automatically and your download will begin</li>
+    </ol>
+  </div>
+
+  <div class="error-box" id="error-state"></div>
+  <div class="success-box" id="success-state">✅ Files selected! This tab will close automatically...</div>
+</div>
+
+<!-- Google Picker API -->
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+  // ─── Configuration ───
+  // IMPORTANT: Replace with your Google API Browser Key
+  const API_KEY = 'YOUR_API_KEY_HERE';
+
+  // ─── Read URL Parameters ───
+  const params = new URLSearchParams(window.location.search);
+  const extensionId = params.get('extId');
+  const requestId = params.get('reqId');
+
+  const statusText = document.getElementById('status-text');
+  const loadingState = document.getElementById('loading-state');
+  const errorState = document.getElementById('error-state');
+  const successState = document.getElementById('success-state');
+  const instructions = document.getElementById('instructions');
+
+  function showError(msg) {
+    loadingState.style.display = 'none';
+    instructions.style.display = 'none';
+    errorState.style.display = 'block';
+    errorState.textContent = '❌ ' + msg;
+  }
+
+  function showSuccess() {
+    loadingState.style.display = 'none';
+    instructions.style.display = 'none';
+    successState.style.display = 'block';
+  }
+
+  // ─── Validate ───
+  if (!extensionId) {
+    showError('Missing extension ID. Please start the download from the Classroom Pro extension.');
+  } else {
+    // Request data from the extension
+    statusText.textContent = 'Connecting to extension...';
+
+    try {
+      chrome.runtime.sendMessage(extensionId, { action: 'requestPickerData' }, (response) => {
+        if (chrome.runtime.lastError) {
+          showError('Could not connect to extension. Make sure Classroom Pro Downloader is installed and enabled.');
+          return;
+        }
+        if (!response || !response.token || !response.fileIds) {
+          showError('No pending file selection. Please start the download from the extension first.');
+          return;
+        }
+
+        statusText.textContent = 'Opening file picker...';
+        initPicker(response.token, response.fileIds);
+      });
+    } catch (e) {
+      showError('Could not connect to extension. Make sure Classroom Pro Downloader is installed.');
+    }
+  }
+
+  // ─── Initialize Google Picker ───
+  function initPicker(token, fileIds) {
+    gapi.load('picker', () => {
+      try {
+        const view = new google.picker.DocsView(google.picker.ViewId.DOCS);
+        view.setIncludeFolders(false);
+
+        // Pre-navigate to the specific Classroom file IDs
+        if (fileIds && fileIds.length > 0) {
+          // setFileIds accepts a comma-separated string
+          view.setFileIds(fileIds.join(','));
+        }
+
+        const picker = new google.picker.PickerBuilder()
+          .addView(view)
+          .setOAuthToken(token)
+          .setDeveloperKey(API_KEY)
+          .setCallback(pickerCallback)
+          .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+          .setTitle('Select Classroom files to download')
+          .setSize(window.innerWidth * 0.9, window.innerHeight * 0.85)
+          .build();
+
+        picker.setVisible(true);
+        loadingState.style.display = 'none';
+      } catch (err) {
+        showError('Failed to open file picker: ' + err.message);
+      }
+    });
+  }
+
+  // ─── Picker Callback ───
+  function pickerCallback(data) {
+    if (data.action === google.picker.Action.PICKED) {
+      const selectedIds = data.docs.map(doc => doc.id);
+      showSuccess();
+
+      // Send selected files back to extension
+      chrome.runtime.sendMessage(extensionId, {
+        action: 'pickerDone',
+        fileIds: selectedIds,
+        reqId: requestId
+      });
+    } else if (data.action === google.picker.Action.CANCEL) {
+      // User cancelled
+      chrome.runtime.sendMessage(extensionId, {
+        action: 'pickerCancelled',
+        reqId: requestId
+      });
+    }
+  }
+</script>
+</body>
+</html>
