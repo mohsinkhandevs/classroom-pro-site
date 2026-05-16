@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Select Files — Classroom Pro Downloader</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *,
     *::before,
@@ -17,8 +17,57 @@
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: #080b14;
+      background: #060a13;
       color: #e2e8f0;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ─── Animated Background ─── */
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-glow::before,
+    .bg-glow::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.3;
+      animation: floatGlow 8s ease-in-out infinite alternate;
+    }
+
+    .bg-glow::before {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #3b82f6, transparent 70%);
+      top: -100px;
+      left: -100px;
+    }
+
+    .bg-glow::after {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #8b5cf6, transparent 70%);
+      bottom: -80px;
+      right: -80px;
+      animation-delay: -4s;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 30px) scale(1.15); }
+    }
+
+    /* ─── Layout ─── */
+    .page-wrap {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -28,137 +77,287 @@
 
     .container {
       text-align: center;
-      max-width: 520px;
+      max-width: 560px;
+      width: 100%;
     }
 
-    .logo {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
+    /* ─── Logo ─── */
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      margin-bottom: 20px;
+      font-size: 2rem;
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.1);
     }
 
     h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #e2e8f0, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
 
     .subtitle {
-      color: #94a3b8;
-      font-size: 0.92rem;
-      margin-bottom: 32px;
-      line-height: 1.6;
-    }
-
-    .spinner-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 20px;
-      background: rgba(59, 130, 246, 0.06);
-      border: 1px solid rgba(59, 130, 246, 0.15);
-      border-radius: 12px;
-      margin-bottom: 24px;
-    }
-
-    .spinner {
-      width: 24px;
-      height: 24px;
-      border: 3px solid rgba(59, 130, 246, 0.2);
-      border-top-color: #3b82f6;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .status {
-      color: #93c5fd;
+      color: #64748b;
       font-size: 0.88rem;
-      font-weight: 500;
-    }
-
-    .instructions {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: left;
-      font-size: 0.85rem;
-      color: #94a3b8;
+      margin-bottom: 32px;
       line-height: 1.7;
     }
 
-    .instructions strong {
+    /* ─── Status Card ─── */
+    .status-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(12px);
+    }
+
+    .spinner-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .spinner {
+      width: 22px;
+      height: 22px;
+      border: 2.5px solid rgba(99, 102, 241, 0.2);
+      border-top-color: #818cf8;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .status-text {
+      color: #a5b4fc;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ─── Steps ─── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .step.active {
+      background: rgba(99, 102, 241, 0.06);
+      border-color: rgba(99, 102, 241, 0.15);
+    }
+
+    .step.done {
+      background: rgba(52, 211, 153, 0.05);
+      border-color: rgba(52, 211, 153, 0.12);
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(99, 102, 241, 0.1);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .step.done .step-num {
+      background: rgba(52, 211, 153, 0.15);
+      color: #34d399;
+      border-color: rgba(52, 211, 153, 0.3);
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 2px;
+    }
+
+    .step.done .step-title {
+      color: #6ee7b7;
+    }
+
+    .step-desc {
+      font-size: 0.75rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .step.active .step-desc {
+      color: #64748b;
+    }
+
+    /* ─── Keyboard Hint ─── */
+    .kbd-hint {
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.06), rgba(245, 158, 11, 0.04));
+      border: 1px solid rgba(251, 191, 36, 0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: #fcd34d;
+    }
+
+    .kbd-hint kbd {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-family: 'Inter', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
       color: #e2e8f0;
     }
 
-    .instructions ol {
-      padding-left: 20px;
-    }
-
-    .instructions li {
-      margin-bottom: 6px;
-    }
-
+    /* ─── Error & Success ─── */
     .error-box {
-      background: rgba(239, 68, 68, 0.08);
-      border: 1px solid rgba(239, 68, 68, 0.2);
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.15);
       border-radius: 12px;
       padding: 20px;
       color: #fca5a5;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       display: none;
+      line-height: 1.6;
     }
 
     .success-box {
-      background: rgba(52, 211, 153, 0.08);
-      border: 1px solid rgba(52, 211, 153, 0.2);
+      background: rgba(52, 211, 153, 0.06);
+      border: 1px solid rgba(52, 211, 153, 0.15);
       border-radius: 12px;
-      padding: 20px;
+      padding: 24px;
       color: #6ee7b7;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
+      font-weight: 600;
       display: none;
+    }
+
+    .success-box .sub {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: #34d399;
+      margin-top: 6px;
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      margin-top: 28px;
+      font-size: 0.72rem;
+      color: #334155;
+    }
+
+    .footer a {
+      color: #475569;
+      text-decoration: none;
     }
   </style>
 </head>
 
 <body>
+  <div class="bg-glow"></div>
 
-  <div class="container">
-    <div class="logo">⚡</div>
-    <h1>Classroom Pro Downloader</h1>
-    <p class="subtitle">Please select the files you'd like to download. This grants the extension temporary access to
-      read your Classroom attachments.</p>
+  <div class="page-wrap">
+    <div class="container">
+      <div class="logo-wrap">⚡</div>
+      <h1>Classroom Pro Downloader</h1>
+      <p class="subtitle">Grant access to your Classroom files so the extension can download them securely to your device.</p>
 
-    <div class="spinner-wrap" id="loading-state">
-      <div class="spinner"></div>
-      <span class="status" id="status-text">Loading file selector...</span>
+      <!-- Status Card -->
+      <div class="status-card" id="main-card">
+        <div class="spinner-row" id="loading-state">
+          <div class="spinner"></div>
+          <span class="status-text" id="status-text">Connecting to extension...</span>
+        </div>
+
+        <div class="steps" id="steps">
+          <div class="step active" id="step-1">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-title">Google's file picker opens</div>
+              <div class="step-desc">A dialog from Google will appear showing your Classroom files</div>
+            </div>
+          </div>
+          <div class="step" id="step-2">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-title">Select all files</div>
+              <div class="step-desc">Click any file, then press Ctrl+A to select all</div>
+            </div>
+          </div>
+          <div class="step" id="step-3">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <div class="step-title">Click "Select" to confirm</div>
+              <div class="step-desc">This tab closes automatically and your download begins</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kbd-hint" id="kbd-hint">
+          💡 <span>Pro tip: Press <kbd>Ctrl</kbd> + <kbd>A</kbd> inside the picker to select all files at once</span>
+        </div>
+      </div>
+
+      <div class="error-box" id="error-state"></div>
+      <div class="success-box" id="success-state">
+        ✅ Files selected successfully!
+        <div class="sub">Returning to Classroom — your download will begin shortly...</div>
+      </div>
+
+      <div class="footer">
+        Powered by Classroom Pro Downloader &nbsp;·&nbsp;
+        <a href="https://classroom.mohsinkhandevs.com/privacy" target="_blank">Privacy Policy</a>
+      </div>
     </div>
-
-    <div class="instructions" id="instructions">
-      <strong>Quick Guide:</strong>
-      <ol>
-        <li>A file picker will appear shortly</li>
-        <li>Press <strong>Ctrl+A</strong> (or <strong>Cmd+A</strong> on Mac) to select all files</li>
-        <li>Click <strong>"Select"</strong> to confirm</li>
-        <li>This tab will close automatically and your download will begin</li>
-      </ol>
-    </div>
-
-    <div class="error-box" id="error-state"></div>
-    <div class="success-box" id="success-state">✅ Files selected! This tab will close automatically...</div>
   </div>
 
   <!-- Google Picker API -->
   <script src="https://apis.google.com/js/api.js"></script>
   <script>
     // ─── Configuration ───
-    // IMPORTANT: Replace with your Google API Browser Key
     const API_KEY = 'AIzaSyCq74z-YTMd9fXapv0yS3p6VvoRltsOGTQ';
 
     // ─── Read URL Parameters ───
@@ -168,30 +367,39 @@
 
     const statusText = document.getElementById('status-text');
     const loadingState = document.getElementById('loading-state');
+    const mainCard = document.getElementById('main-card');
     const errorState = document.getElementById('error-state');
     const successState = document.getElementById('success-state');
-    const instructions = document.getElementById('instructions');
+    const step1 = document.getElementById('step-1');
+    const step2 = document.getElementById('step-2');
+    const step3 = document.getElementById('step-3');
+    const kbdHint = document.getElementById('kbd-hint');
 
     function showError(msg) {
-      loadingState.style.display = 'none';
-      instructions.style.display = 'none';
+      mainCard.style.display = 'none';
       errorState.style.display = 'block';
       errorState.textContent = '❌ ' + msg;
     }
 
     function showSuccess() {
-      loadingState.style.display = 'none';
-      instructions.style.display = 'none';
+      mainCard.style.display = 'none';
       successState.style.display = 'block';
+    }
+
+    function markStepDone(step) {
+      step.classList.remove('active');
+      step.classList.add('done');
+      step.querySelector('.step-num').textContent = '✓';
+    }
+
+    function markStepActive(step) {
+      step.classList.add('active');
     }
 
     // ─── Validate ───
     if (!extensionId) {
       showError('Missing extension ID. Please start the download from the Classroom Pro extension.');
     } else {
-      // Request data from the extension
-      statusText.textContent = 'Connecting to extension...';
-
       try {
         chrome.runtime.sendMessage(extensionId, { action: 'requestPickerData' }, (response) => {
           if (chrome.runtime.lastError) {
@@ -204,6 +412,8 @@
           }
 
           statusText.textContent = 'Opening file picker...';
+          markStepDone(step1);
+          markStepActive(step2);
           initPicker(response.token, response.fileIds);
         });
       } catch (e) {
@@ -218,9 +428,7 @@
           const view = new google.picker.DocsView(google.picker.ViewId.DOCS);
           view.setIncludeFolders(false);
 
-          // Pre-navigate to the specific Classroom file IDs
           if (fileIds && fileIds.length > 0) {
-            // setFileIds accepts a comma-separated string
             view.setFileIds(fileIds.join(','));
           }
 
@@ -231,7 +439,7 @@
             .setCallback(pickerCallback)
             .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
             .setTitle('Select Classroom files to download')
-            .setSize(window.innerWidth * 0.9, window.innerHeight * 0.85)
+            .setSize(Math.min(window.innerWidth * 0.92, 1000), Math.min(window.innerHeight * 0.8, 600))
             .build();
 
           picker.setVisible(true);
@@ -246,16 +454,19 @@
     function pickerCallback(data) {
       if (data.action === google.picker.Action.PICKED) {
         const selectedIds = data.docs.map(doc => doc.id);
-        showSuccess();
 
-        // Send selected files back to extension
+        markStepDone(step2);
+        markStepDone(step3);
+        kbdHint.style.display = 'none';
+
+        setTimeout(() => showSuccess(), 400);
+
         chrome.runtime.sendMessage(extensionId, {
           action: 'pickerDone',
           fileIds: selectedIds,
           reqId: requestId
         });
       } else if (data.action === google.picker.Action.CANCEL) {
-        // User cancelled
         chrome.runtime.sendMessage(extensionId, {
           action: 'pickerCancelled',
           reqId: requestId
