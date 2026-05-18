@@ -388,17 +388,23 @@
         </thead>
         <tbody>
           <tr>
+            <td><code>drive.readonly</code></td>
+            <td><span class="scope-badge read">Read-Only</span></td>
+            <td>Reads file metadata (MIME type, file size) and downloads the binary content of files attached to your Classroom materials directly to your device.</td>
+          </tr>
+          <tr>
             <td><code>drive.file</code></td>
-            <td><span class="scope-badge write">Scoped Access</span></td>
+            <td><span class="scope-badge write">Scoped Write</span></td>
             <td>
-              Accesses only the specific files you explicitly select via the Google Picker when downloading. Used to (1) read file metadata and download binary content, and (2) convert uploaded Microsoft Office files (e.g. <code>.docx</code>, <code>.pptx</code>) to PDF via a temporary Google Workspace copy that is <strong>immediately and permanently deleted</strong>. This scope <strong>cannot access your entire Drive</strong> — only files you actively select.
+              Used <strong>exclusively</strong> to convert uploaded Microsoft Office files (e.g. <code>.docx</code>, <code>.pptx</code>) to PDF.
+              The process is: (1) a temporary Google Workspace copy is created, (2) exported to PDF locally, then (3) the temporary file is <strong>immediately and permanently deleted</strong>. No files created by this scope are ever retained.
             </td>
           </tr>
         </tbody>
       </table>
 
       <div class="callout callout-yellow">
-        <strong>Note on <code>drive.file</code>:</strong> This scope only grants the extension access to files you explicitly select via Google's file picker — not your entire Drive. The extension cannot browse, read, modify, or delete any files you haven't specifically chosen.
+        <strong>Note on <code>drive.file</code>:</strong> This scope only grants the extension access to files it creates itself — not your entire Drive. It cannot read, modify, or delete any of your pre-existing Drive files.
       </div>
 
       <p>You can review and revoke the extension's OAuth access at any time by visiting <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>.</p>
@@ -454,7 +460,7 @@
       <ul>
         <li><strong>No tokens are stored persistently:</strong> OAuth access tokens are held in browser session memory only during active use and are managed entirely by the browser's identity system.</li>
         <li><strong>No tokens are transmitted externally:</strong> Access tokens are never sent to any server, endpoint, or service other than Google's official API infrastructure.</li>
-        <li><strong>Token scope limitation:</strong> Tokens are scoped to the minimum permissions required (read-only Classroom access and scoped Drive access limited to user-selected files via Google Picker). The extension cannot access your entire Drive or modify data you have not explicitly selected.</li>
+        <li><strong>Token scope limitation:</strong> Tokens are scoped to the minimum permissions required (read-only Classroom access and read-only Drive access). The extension cannot modify, delete, or share your Google Classroom or Drive data.</li>
         <li><strong>User-revocable:</strong> You can revoke the extension's access at any time by visiting <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>.</li>
       </ul>
 
