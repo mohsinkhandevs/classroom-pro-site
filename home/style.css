@@ -1287,6 +1287,12 @@ img {
 
 /* ─── Responsive Media Queries ─── */
 @media (max-width: 960px) {
+  .nav-links, .btn-nav {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1313,12 +1319,6 @@ img {
 }
 
 @media (max-width: 680px) {
-  .nav-links, .btn-nav {
-    display: none;
-  }
-  .hamburger {
-    display: block;
-  }
   .features-grid {
     grid-template-columns: 1fr;
   }
