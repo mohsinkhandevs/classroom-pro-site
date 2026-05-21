@@ -3,410 +3,563 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service — Classroom Content Downloader</title>
-  <meta name="description" content="Terms of Service for the Classroom Content Downloader Chrome & Edge extension by Mohsin Khan." />
+  <title>Terms of Service — Classroom Pro Downloader</title>
+  <meta name="description" content="Terms of Service for Classroom Pro Downloader extension. Review our terms of use, licensing, and user responsibilities." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #080b14;
-      color: #e2e8f0;
-      line-height: 1.7;
-      font-size: 16px;
+    /* ============================================================
+       Classroom Pro Downloader — Gold Standard Terms of Service CSS
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    a { color: #3b82f6; text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
-    /* Nav */
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: #030712;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #030712;
+      color: #f3f4f6;
+      line-height: 1.62;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.3s;
+    }
+    a:hover {
+      color: #60a5fa;
+      text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+    }
+
+    /* ─── Background Orbs ─── */
+    .bg-orbs {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.12;
+    }
+    .orb-1 {
+      top: -10%;
+      left: 15%;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, #3b82f6 0%, #8b5cf6 100%);
+    }
+    .orb-2 {
+      top: 50%;
+      right: -5%;
+      width: 35vw;
+      height: 35vw;
+      background: radial-gradient(circle, #8b5cf6 0%, #06b6d4 100%);
+    }
+
+    /* ─── Navigation ─── */
     nav {
-      background: rgba(8,11,20,0.9);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 0 24px;
-      height: 60px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(3, 7, 18, 0.8);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 70px;
     }
-    .nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.95rem; }
-    .logo-icon { font-size: 1.2rem; }
-    .nav-home {
-      font-size: 0.85rem;
-      color: #94a3b8;
+    .nav-logo {
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #f9fafb;
+      text-decoration: none;
     }
-    .nav-home:hover { color: #e2e8f0; text-decoration: none; }
+    .nav-logo strong {
+      font-weight: 800;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo-icon {
+      font-size: 1.4rem;
+    }
+    .nav-home {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #9ca3af;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-home:hover {
+      color: #f9fafb;
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: translateX(-2px);
+      text-decoration: none;
+    }
 
-    /* Layout */
-    .page-wrap {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 0;
-      max-width: 1100px;
+    /* ─── Page Layout ─── */
+    .page-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: 120px 28px 80px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
     }
 
-    /* Sidebar TOC */
-    .toc {
+    /* ─── Sidebar TOC ─── */
+    aside {
       position: sticky;
-      top: 80px;
+      top: 118px;
       height: fit-content;
-      padding-right: 40px;
+      align-self: start;
     }
     .toc-title {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #475569;
-      margin-bottom: 16px;
-    }
-    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-    .toc-list a {
-      font-size: 0.82rem;
-      color: #64748b;
-      transition: color 0.2s;
-      display: block;
-      padding: 3px 0;
-      border-left: 2px solid transparent;
-      padding-left: 10px;
-    }
-    .toc-list a:hover { color: #93c5fd; border-color: #3b82f6; text-decoration: none; }
-
-    /* Content */
-    .tos-content { min-width: 0; }
-    .tos-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .tos-eyebrow {
-      display: inline-block;
       font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #4b5563;
+      margin-bottom: 20px;
+    }
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .toc-list a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #9ca3af;
+      display: block;
+      padding: 6px 0;
+      border-left: 2px solid transparent;
+      padding-left: 14px;
+      transition: all 0.3s var(--transition);
+    }
+    .toc-list a:hover {
+      color: #60a5fa;
+      border-color: rgba(59, 130, 246, 0.3);
+      text-decoration: none;
+    }
+    .toc-list a.active {
+      color: #60a5fa;
+      border-color: #3b82f6;
       font-weight: 600;
+    }
+
+    /* ─── Content styling ─── */
+    main {
+      min-width: 0;
+    }
+    .pp-header {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .pp-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #3b82f6;
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.2);
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.18);
       border-radius: 100px;
       padding: 4px 12px;
       margin-bottom: 16px;
     }
-    .tos-title { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 12px; }
-    .tos-meta { font-size: 0.85rem; color: #64748b; }
-    .tos-meta span { color: #94a3b8; font-weight: 500; }
+    .pp-title {
+      font-size: clamp(2rem, 5vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #f9fafb;
+      margin-bottom: 12px;
+    }
+    .pp-meta {
+      font-size: 0.88rem;
+      color: #9ca3af;
+    }
+    .pp-meta span {
+      color: #f3f4f6;
+      font-weight: 600;
+    }
 
-    /* Sections */
-    .tos-section { margin-bottom: 48px; scroll-margin-top: 90px; }
-    .tos-section h2 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #f1f5f9;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+    /* ─── Callout Boxes ─── */
+    .callout {
+      padding: 18px 24px;
+      border-radius: 12px;
+      margin: 24px 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      backdrop-filter: blur(10px);
+    }
+    .callout-blue  { background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.15); border-left: 4px solid #3b82f6; color: #93c5fd; }
+    .callout-green { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.15); border-left: 4px solid #10b981; color: #6ee7b7; }
+    .callout-yellow{ background: rgba(251, 191, 36, 0.05); border: 1px solid rgba(251, 191, 36, 0.15); border-left: 4px solid #fbbf24; color: #fde68a; }
+
+    /* ─── Sections ─── */
+    .pp-section {
+      margin-bottom: 56px;
+      scroll-margin-top: 100px;
+    }
+    .pp-section h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #f9fafb;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      letter-spacing: -0.02em;
     }
     .sec-num {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 28px;
-      height: 28px;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      border-radius: 7px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #fff;
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #ffffff;
       flex-shrink: 0;
     }
-    .tos-section p { color: #94a3b8; font-size: 0.92rem; margin-bottom: 12px; }
-    .tos-section ul, .tos-section ol {
+    .pp-section p {
+      color: #9ca3af;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .pp-section strong {
+      color: #e5e7eb;
+    }
+    .pp-section ul, .pp-section ol {
       padding-left: 20px;
-      color: #94a3b8;
-      font-size: 0.92rem;
+      color: #9ca3af;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
     }
-    .tos-section li { margin-bottom: 8px; }
-    .tos-section strong { color: #e2e8f0; }
-    .tos-section a { color: #3b82f6; }
-
-    /* Callout boxes */
-    .callout {
-      padding: 16px 20px;
-      border-radius: 10px;
-      margin: 16px 0;
-      font-size: 0.88rem;
+    .pp-section li {
+      margin-bottom: 10px;
     }
-    .callout-blue { background: rgba(59,130,246,0.08); border-left: 3px solid #3b82f6; color: #93c5fd; }
-    .callout-yellow { background: rgba(251,191,36,0.08); border-left: 3px solid #fbbf24; color: #fde68a; }
-    .callout-green { background: rgba(52,211,153,0.08); border-left: 3px solid #34d399; color: #6ee7b7; }
+    .pp-section h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      margin: 28px 0 14px;
+      letter-spacing: -0.01em;
+    }
 
-    /* Footer */
-    .tos-footer {
-      margin-top: 64px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+    /* ─── Footer ─── */
+    .pp-footer {
+      margin-top: 80px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       font-size: 0.82rem;
-      color: #475569;
+      color: #6b7280;
+      line-height: 1.7;
     }
-    .tos-footer a { color: #3b82f6; }
+    .pp-footer p {
+      margin-bottom: 8px;
+    }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .page-wrap { grid-template-columns: 1fr; }
-      .toc { display: none; }
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .page-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-top: 100px;
+      }
+      aside {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">
-    <span class="logo-icon">⚡</span>
-    <span>Classroom <strong>Downloader</strong></span>
+  <!-- Background Orbs -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
   </div>
-  <a href="https://classroom.mohsinkhandevs.com" class="nav-home">← Back to Home</a>
-</nav>
 
-<div class="page-wrap">
-
-  <!-- Sidebar TOC -->
-  <aside class="toc">
-    <p class="toc-title">On This Page</p>
-    <ul class="toc-list">
-      <li><a href="#acceptance">1. Acceptance</a></li>
-      <li><a href="#description">2. Service Description</a></li>
-      <li><a href="#eligibility">3. Eligibility</a></li>
-      <li><a href="#google-account">4. Google Account &amp; OAuth</a></li>
-      <li><a href="#permitted-use">5. Permitted Use</a></li>
-      <li><a href="#prohibited">6. Prohibited Use</a></li>
-      <li><a href="#data-privacy">7. Data &amp; Privacy</a></li>
-      <li><a href="#google-apis">8. Google API Compliance</a></li>
-      <li><a href="#ip">9. Intellectual Property</a></li>
-      <li><a href="#disclaimer">10. Disclaimer of Warranties</a></li>
-      <li><a href="#liability">11. Limitation of Liability</a></li>
-      <li><a href="#indemnification">12. Indemnification</a></li>
-      <li><a href="#third-party">13. Third-Party Services</a></li>
-      <li><a href="#changes">14. Changes to Terms</a></li>
-      <li><a href="#termination">15. Termination</a></li>
-      <li><a href="#governing-law">16. Governing Law</a></li>
-      <li><a href="#contact">17. Contact</a></li>
-    </ul>
-  </aside>
-
-  <!-- Main Content -->
-  <main class="tos-content">
-    <div class="tos-header">
-      <span class="tos-eyebrow">Legal Document</span>
-      <h1 class="tos-title">Terms of Service</h1>
-      <p class="tos-meta">
-        <span>Effective Date:</span> May 12, 2026 &nbsp;·&nbsp;
-        <span>Product:</span> Classroom Content Downloader (Chrome &amp; Edge Extension) &nbsp;·&nbsp;
-        <span>Developer:</span> Mohsin Khan
-      </p>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span>Classroom <strong>Pro</strong></span>
+      </a>
+      <a href="/" class="nav-home">← Back to Home</a>
     </div>
+  </nav>
 
-    <div class="callout callout-blue">
-      Please read these Terms of Service ("Terms") carefully before installing or using the <strong>Classroom Content Downloader</strong> browser extension. By installing or using the Extension, you agree to be bound by these Terms.
-    </div>
+  <!-- Page Wrapper -->
+  <div class="page-container">
 
-    <!-- 1 -->
-    <section class="tos-section" id="acceptance">
-      <h2><span class="sec-num">1</span> Acceptance of Terms</h2>
-      <p>These Terms constitute a legally binding agreement between you ("User," "you," or "your") and Mohsin Khan ("Developer," "we," "us," or "our") governing your access to and use of the Classroom Content Downloader browser extension ("Extension") and any related services, documentation, or websites operated by the Developer (collectively, the "Service").</p>
-      <p>By installing, activating, or otherwise using the Extension, you acknowledge that you have read, understood, and agree to be bound by these Terms and our <a href="https://sites.google.com/view/classroom-pro-privacy/home" target="_blank">Privacy Policy</a>, which is incorporated herein by reference. If you do not agree to these Terms, you must immediately uninstall and cease use of the Extension.</p>
-    </section>
-
-    <!-- 2 -->
-    <section class="tos-section" id="description">
-      <h2><span class="sec-num">2</span> Description of the Service</h2>
-      <p>Classroom Content Downloader is a browser extension for Google Chrome and Microsoft Edge that enables users to batch-download materials from Google Classroom into organized ZIP archive files. Key capabilities include:</p>
-      <ul>
-        <li>Downloading coursework materials, assignments, and announcements from one or all enrolled Google Classroom courses.</li>
-        <li>Organizing downloaded files into structured folders by course and assignment name within ZIP archives.</li>
-        <li>Automatically converting Google Workspace files (Google Docs, Sheets, Slides, Drawings) and uploaded MS Office files to PDF or native Office formats.</li>
-        <li>Filtering downloads by date range and file type.</li>
-        <li>Previewing discovered files before initiating a download.</li>
-        <li>Maintaining a local download history log.</li>
+    <!-- Sidebar Table of Contents -->
+    <aside aria-label="Table of contents">
+      <p class="toc-title">On This Page</p>
+      <ul class="toc-list">
+        <li><a href="#overview" class="active">Overview</a></li>
+        <li><a href="#acceptance">1. Acceptance</a></li>
+        <li><a href="#description">2. Description</a></li>
+        <li><a href="#eligibility">3. Eligibility</a></li>
+        <li><a href="#google-account">4. Google Account &amp; Scopes</a></li>
+        <li><a href="#permitted-use">5. Permitted Use</a></li>
+        <li><a href="#prohibited-use">6. Prohibited Use</a></li>
+        <li><a href="#data-privacy">7. Data &amp; Privacy Policy</a></li>
+        <li><a href="#intellectual-property">8. Intellectual Property</a></li>
+        <li><a href="#warranty-disclaimer">9. Warranty Disclaimer</a></li>
+        <li><a href="#limitation-liability">10. Liability Limit</a></li>
+        <li><a href="#indemnification">11. Indemnification</a></li>
+        <li><a href="#third-party">12. Third-Party Libraries</a></li>
+        <li><a href="#changes">13. Changes to Terms</a></li>
+        <li><a href="#termination">14. Termination</a></li>
+        <li><a href="#governing-law">15. Governing Law</a></li>
+        <li><a href="#contact">16. Contact Details</a></li>
       </ul>
-      <div class="callout callout-green">
-        The Extension operates on a <strong>100% serverless, client-side architecture</strong>. All data processing occurs locally within your browser. No files, credentials, or personal data are transmitted to the Developer or any third-party server.
+    </aside>
+
+    <!-- Main Content Area -->
+    <main>
+
+      <!-- Document Header -->
+      <div class="pp-header" id="overview">
+        <span class="pp-badge">⚖️ User Agreement</span>
+        <h1 class="pp-title">Terms of Service</h1>
+        <p class="pp-meta">
+          Effective Date: <span>May 21, 2026</span> &nbsp;·&nbsp;
+          Product: <span>Classroom Pro Downloader</span> &nbsp;·&nbsp;
+          Version: <span>v5.1.0</span>
+        </p>
       </div>
-    </section>
 
-    <!-- 3 -->
-    <section class="tos-section" id="eligibility">
-      <h2><span class="sec-num">3</span> Eligibility</h2>
-      <p>You must be at least 13 years of age to use the Extension. If you are under 18, you represent that a parent or legal guardian has reviewed and agreed to these Terms on your behalf. The Extension is intended for use by students, educators, and administrators who have legitimate access to Google Classroom accounts and the materials stored therein.</p>
-    </section>
-
-    <!-- 4 -->
-    <section class="tos-section" id="google-account">
-      <h2><span class="sec-num">4</span> Google Account &amp; OAuth Authorization</h2>
-      <p>The Extension requires you to authenticate with a valid Google Account using Google's official OAuth 2.0 protocol via the Chrome Identity API. By granting authorization, you permit the Extension to access the following Google API scopes on your behalf:</p>
-      <ul>
-        <li><strong>classroom.courses.readonly</strong> — to retrieve your enrolled course list.</li>
-        <li><strong>classroom.coursework.me.readonly</strong> — to access your assigned coursework.</li>
-        <li><strong>classroom.coursework.students.readonly</strong> — to access student-submitted coursework materials.</li>
-        <li><strong>classroom.courseworkmaterials.readonly</strong> — to access posted course materials.</li>
-        <li><strong>classroom.announcements.readonly</strong> — to access course announcements with attachments.</li>
-        <li><strong>drive.readonly</strong> — to read and download files from Google Drive that are attached to your Classroom materials.</li>
-        <li><strong>drive.file</strong> — used exclusively to create temporary Google Workspace copies of uploaded MS Office files for PDF conversion; all temporary files are deleted immediately after export.</li>
-      </ul>
-      <p>You may revoke the Extension's access at any time via your <a href="https://myaccount.google.com/permissions" target="_blank">Google Account Permissions</a> page. Revoking access will prevent the Extension from functioning until re-authorized.</p>
-    </section>
-
-    <!-- 5 -->
-    <section class="tos-section" id="permitted-use">
-      <h2><span class="sec-num">5</span> Permitted Use</h2>
-      <p>Subject to these Terms, the Developer grants you a limited, non-exclusive, non-transferable, revocable license to use the Extension solely for your personal, non-commercial educational purposes, including:</p>
-      <ul>
-        <li>Downloading materials from Google Classroom courses in which you are lawfully enrolled as a student or instructor.</li>
-        <li>Organizing and archiving course materials for personal study, revision, or teaching purposes.</li>
-        <li>Using the Extension's features as described in Section 2 for lawful academic activities.</li>
-      </ul>
-    </section>
-
-    <!-- 6 -->
-    <section class="tos-section" id="prohibited">
-      <h2><span class="sec-num">6</span> Prohibited Use</h2>
-      <p>You agree not to use the Extension for any of the following purposes:</p>
-      <ul>
-        <li><strong>Unauthorized Access:</strong> Accessing, downloading, or copying materials from courses or accounts for which you do not have lawful authorization.</li>
-        <li><strong>Copyright Infringement:</strong> Distributing, reselling, sublicensing, or publicly sharing copyrighted course materials without the express written consent of the copyright holder(s).</li>
-        <li><strong>Reverse Engineering:</strong> Decompiling, disassembling, reverse-engineering, or attempting to derive the source code of the Extension beyond what is permitted by applicable law.</li>
-        <li><strong>Harmful Activity:</strong> Using the Extension to introduce malware, interfere with, disrupt, or gain unauthorized access to any network, server, or third-party systems.</li>
-        <li><strong>Automated Abuse:</strong> Using the Extension in an automated manner to make excessive API requests that violate Google's API usage policies or Terms of Service.</li>
-        <li><strong>Academic Misconduct:</strong> Using the Extension to facilitate plagiarism, academic dishonesty, or any violation of your institution's academic integrity policies.</li>
-        <li><strong>Commercial Resale:</strong> Selling, renting, or leasing access to the Extension or its functionality to third parties.</li>
-      </ul>
-      <div class="callout callout-yellow">
-        Violation of these prohibitions may result in immediate termination of your license to use the Extension and may expose you to civil or criminal liability.
+      <div class="callout callout-blue">
+        Please read these Terms of Service ("Terms") thoroughly before installing or running the <strong>Classroom Pro Downloader</strong> browser extension. By utilizing the extension, you agree to comply with and be legally bound by these Terms.
       </div>
-    </section>
 
-    <!-- 7 -->
-    <section class="tos-section" id="data-privacy">
-      <h2><span class="sec-num">7</span> Data, Privacy &amp; Local Storage</h2>
-      <p>The Developer is deeply committed to user privacy. Our data practices are governed by our <a href="https://sites.google.com/view/classroom-pro-privacy/home" target="_blank">Privacy Policy</a>, the key principles of which are:</p>
-      <ul>
-        <li><strong>Zero Data Collection:</strong> The Developer does not collect, store, transmit, log, or share any of your personal data, Google account information, file contents, or usage statistics on any remote server.</li>
-        <li><strong>Local Storage Only:</strong> The only data stored by the Extension is your user preferences (export format, file-type filters) and a local download history log, all of which reside exclusively in your browser's <code>chrome.storage.local</code> and never leave your device.</li>
-        <li><strong>No Analytics or Tracking:</strong> The Extension contains no analytics SDK, crash-reporting library, or tracking pixel of any kind.</li>
-        <li><strong>Temporary Drive Files:</strong> Any temporary Google Drive files created solely for the purpose of PDF conversion are deleted immediately upon completion of the export operation and are never accessed by the Developer.</li>
-      </ul>
-    </section>
+      <!-- Section 1 -->
+      <section class="pp-section" id="acceptance">
+        <h2><span class="sec-num">1</span> Acceptance of Terms</h2>
+        <p>These Terms constitute a legally binding agreement between you ("User," "you," or "your") and Mohsin Khan ("Developer," "we," "us," or "our") regarding your installation and use of the Classroom Pro Downloader browser extension ("Extension") and any associated documentations, resources, or subpages (collectively, the "Service").</p>
+        <p>By downloading, installing, activating, or running the Extension, you confirm that you have read, understood, and agreed to these Terms and our integrated <a href="/privacy">Privacy Policy</a>. If you do not agree to all provisions within these Terms, you must immediately uninstall the Extension and cease all utilization of the Service.</p>
+      </section>
 
-    <!-- 8 -->
-    <section class="tos-section" id="google-apis">
-      <h2><span class="sec-num">8</span> Google API Services &amp; Compliance</h2>
-      <p>The Extension's use of Google APIs is subject to Google's <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">API Services User Data Policy</a>, including the Limited Use requirements. Specifically:</p>
-      <ul>
-        <li>Data obtained via Google APIs is used only to provide the core download functionality described in Section 2 and for no other purpose.</li>
-        <li>We do not use Google user data for advertising, profiling, or any secondary commercial purpose.</li>
-        <li>We do not sell, transfer, or share Google user data with third parties.</li>
-        <li>We do not allow humans to read your Google user data except as required by law.</li>
-      </ul>
-      <p>Your use of the Extension is also subject to <a href="https://policies.google.com/terms" target="_blank">Google's Terms of Service</a> and the <a href="https://classroom.google.com/features/" target="_blank">Google Classroom Terms</a>. The Developer is not affiliated with, endorsed by, or sponsored by Google LLC.</p>
-    </section>
+      <!-- Section 2 -->
+      <section class="pp-section" id="description">
+        <h2><span class="sec-num">2</span> Service Description</h2>
+        <p>Classroom Pro Downloader is a browser plugin for Chromium architectures (Google Chrome, Microsoft Edge, and Brave) that enables users to batch-download course assets and reference links from Google Classroom. Its core local features include:</p>
+        <ul>
+          <li>Batch-downloading materials, assignments, coursework, and stream announcements.</li>
+          <li>Organizing files locally into a structural ZIP tree by course and coursework title.</li>
+          <li>Assembling external materials and attachments into easy-to-use internet shortcuts (`.url` files).</li>
+          <li>Enabling "Master Archive Mode" to scan and compile materials from all your classes simultaneously.</li>
+          <li>Providing Sync-From-Date and file extension filtering tools.</li>
+        </ul>
+        <div class="callout callout-green">
+          <strong>100% Client-Side Engine:</strong> The Service operates under a serverless, local architecture. All processing, organization, and packaging steps occur inside your local system memory. No user files, access tokens, or course materials are ever transmitted to the Developer or any external database.
+        </div>
+      </section>
 
-    <!-- 9 -->
-    <section class="tos-section" id="ip">
-      <h2><span class="sec-num">9</span> Intellectual Property</h2>
-      <p>The Extension, including its source code, design, icons, user interface, and all associated documentation, is the exclusive intellectual property of Mohsin Khan and is protected by applicable copyright, trademark, and other intellectual property laws. All rights not expressly granted under these Terms are reserved by the Developer.</p>
-      <p>Your use of the Extension does not grant you any ownership rights in or to the Extension or its underlying technology. The "Classroom Content Downloader" name, logo, and branding are proprietary to the Developer.</p>
-      <p>Content downloaded through the Extension (e.g., your course materials) remains the property of its respective copyright holders — your institution, instructors, or other rights holders — and is not the intellectual property of the Developer.</p>
-    </section>
+      <!-- Section 3 -->
+      <section class="pp-section" id="eligibility">
+        <h2><span class="sec-num">3</span> Eligibility Requirements</h2>
+        <p>You must be at least 13 years old to utilize the Extension. If you are between the ages of 13 and 18, you represent that a parent or legal guardian has reviewed and consented to these Terms on your behalf. You represent that you possess the lawful right and permission to access and compile the files from your registered Google Classroom courses.</p>
+      </section>
 
-    <!-- 10 -->
-    <section class="tos-section" id="disclaimer">
-      <h2><span class="sec-num">10</span> Disclaimer of Warranties</h2>
-      <p>THE EXTENSION IS PROVIDED ON AN <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong> BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.</p>
-      <p>The Developer does not warrant that:</p>
-      <ul>
-        <li>The Extension will be error-free, uninterrupted, or available at all times.</li>
-        <li>All files will be downloaded successfully (download success depends on Google API availability and your account permissions).</li>
-        <li>The Extension will remain compatible with future versions of Google Chrome, Microsoft Edge, or Google Classroom as these platforms evolve.</li>
-        <li>PDF conversions will be pixel-perfect representations of the original documents in all cases.</li>
-      </ul>
-    </section>
+      <!-- Section 4 -->
+      <section class="pp-section" id="google-account">
+        <h2><span class="sec-num">4</span> Google Account and OAuth Permissions</h2>
+        <p>To identify your enrolled classes and materials, the Extension uses Google's standard OAuth 2.0 authorization framework. By granting access, you permit the Extension to access the following specific, read-only Google API scopes on your behalf:</p>
+        <ul>
+          <li><strong><code>classroom.courses.readonly</code></strong> — to list your active enrolled classes.</li>
+          <li><strong><code>classroom.coursework.me.readonly</code></strong> — to scan assignments and tasks posted to you.</li>
+          <li><strong><code>classroom.coursework.students.readonly</code></strong> — to identify coursework attachments visible to students.</li>
+          <li><strong><code>classroom.courseworkmaterials.readonly</code></strong> — to read class materials posted to your course pages.</li>
+          <li><strong><code>classroom.announcements.readonly</code></strong> — to access class announcements containing references you wish to download.</li>
+        </ul>
+        
+        <div class="callout callout-blue">
+          <strong>Zero Google Drive Permissions:</strong> In accordance with our security-first design, Classroom Pro Downloader requests **zero Google Drive scopes**. File downloads are handled locally inside your browser context using session cookie-authenticated background worker fetches, keeping your Drive fully private.
+        </div>
+        
+        <p>You can manage or completely revoke this connection at any time in your Google Settings panel at <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>.</p>
+      </section>
 
-    <!-- 11 -->
-    <section class="tos-section" id="liability">
-      <h2><span class="sec-num">11</span> Limitation of Liability</h2>
-      <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE DEVELOPER BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO:</p>
-      <ul>
-        <li>Loss of data, files, or content;</li>
-        <li>Academic or professional consequences arising from your use of downloaded materials;</li>
-        <li>Damages resulting from your violation of Google's or your institution's Terms of Service;</li>
-        <li>Any interruption or unavailability of Google APIs.</li>
-      </ul>
-      <p>The Developer's total aggregate liability for any claims arising under these Terms shall not exceed <strong>USD $0</strong> (reflecting the fact that the Extension is provided free of charge).</p>
-    </section>
+      <!-- Section 5 -->
+      <section class="pp-section" id="permitted-use">
+        <h2><span class="sec-num">5</span> Permitted Use Parameters</h2>
+        <p>The Developer grants you a limited, non-exclusive, non-transferable, revocable license to utilize the Extension solely for your personal, non-commercial educational activities. Permitted actions include:</p>
+        <ul>
+          <li>Compiling materials from courses in which you are lawfully registered as an active student or educator.</li>
+          <li>Archiving coursework assets for personal study, curriculum coordination, or classroom reference.</li>
+          <li>Customizing download settings, schedules, and file-type filters.</li>
+        </ul>
+      </section>
 
-    <!-- 12 -->
-    <section class="tos-section" id="indemnification">
-      <h2><span class="sec-num">12</span> Indemnification</h2>
-      <p>You agree to defend, indemnify, and hold harmless the Developer and his affiliates, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to: (a) your violation of these Terms; (b) your use of the Extension for any unauthorized or prohibited purpose; (c) your violation of any third party's rights, including intellectual property rights; or (d) your violation of any applicable law or regulation.</p>
-    </section>
+      <!-- Section 6 -->
+      <section class="pp-section" id="prohibited-use">
+        <h2><span class="sec-num">6</span> Prohibited Actions</h2>
+        <p>You agree not to utilize the Extension to engage in any prohibited behaviors. Specifically, you will not:</p>
+        <ul>
+          <li><strong>Unauthorized Access:</strong> Download, scan, or copy materials from courses or Google accounts you do not own or possess explicit permission to access.</li>
+          <li><strong>Copyright Violation:</strong> Sublicense, resell, distribute, or publicly post copywritten academic files compiled by the Extension without the written consent of the copyright owner.</li>
+          <li><strong>Decompilation:</strong> Reverse-engineer, decompile, or attempt to extract the source code of the Extension, except as permitted by local statutes.</li>
+          <li><strong>API Abuse:</strong> Automate scanning requests in a manner that exceeds Google's API parameters or violates Google Classroom rate-limiting rules.</li>
+          <li><strong>Academic Misconduct:</strong> Use the Extension to facilitate academic dishonesty, plagiarism, or any behavior violating your school's code of academic integrity.</li>
+        </ul>
+        <div class="callout callout-yellow">
+          Engaging in prohibited activities will lead to the immediate revocation of your license to use the Service, and may expose you to institutional disciplinary action or statutory civil liability.
+        </div>
+      </section>
 
-    <!-- 13 -->
-    <section class="tos-section" id="third-party">
-      <h2><span class="sec-num">13</span> Third-Party Services</h2>
-      <p>The Extension interacts exclusively with Google's official API services (Google Classroom API, Google Drive API) and uses the open-source <a href="https://stuk.github.io/jszip/" target="_blank">JSZip library</a> for client-side ZIP generation. The Developer is not responsible for the availability, accuracy, or content of these third-party services.</p>
-      <p>Links to external websites or services (including the Chrome Web Store, Google's Terms, or this website) are provided for convenience only and do not constitute an endorsement by the Developer.</p>
-    </section>
+      <!-- Section 7 -->
+      <section class="pp-section" id="data-privacy">
+        <h2><span class="sec-num">7</span> Data and Privacy Policy</h2>
+        <p>The Developer prioritizes your digital privacy. All practices regarding your local parameters are outlined in our <a href="/privacy">Privacy Policy</a>, summarized by these guidelines:</p>
+        <ul>
+          <li><strong>No Server Collection:</strong> No details, logs, accounts, or file binaries ever reach the Developer's systems. Everything remains on your device.</li>
+          <li><strong>Transient Memory:</strong> Downloaded file contents reside solely in volatile RAM while building the ZIP file and are immediately released once saved.</li>
+          <li><strong>Local Options:</strong> Configuration settings and history are stored locally in the browser's sandboxed storage.</li>
+        </ul>
+      </section>
 
-    <!-- 14 -->
-    <section class="tos-section" id="changes">
-      <h2><span class="sec-num">14</span> Changes to These Terms</h2>
-      <p>The Developer reserves the right to modify these Terms at any time. When changes are made, the "Effective Date" at the top of this page will be updated. For material changes, the Developer will endeavor to provide notice through the Chrome Web Store listing update notes or the Extension's built-in announcement banner.</p>
-      <p>Your continued use of the Extension following the posting of revised Terms constitutes your acceptance of such changes. If you do not agree to the revised Terms, you must uninstall the Extension.</p>
-    </section>
+      <!-- Section 8 -->
+      <section class="pp-section" id="intellectual-property">
+        <h2><span class="sec-num">8</span> Intellectual Property Rights</h2>
+        <p>The Extension's source code, assets, UI layouts, graphics, scripts, and documentation are the exclusive property of Mohsin Khan and are protected under international copyright and trademark laws. All rights not explicitly outlined in these Terms are reserved.</p>
+        <p>Academic files, coursework documents, and reference sheets downloaded via the Extension are the exclusive property of their respective creators, instructors, or institutions, and are governed by their respective licenses.</p>
+      </section>
 
-    <!-- 15 -->
-    <section class="tos-section" id="termination">
-      <h2><span class="sec-num">15</span> Termination</h2>
-      <p>The Developer may terminate or suspend your license to use the Extension at any time, with or without notice, for any reason, including if you are found to be in violation of these Terms. Upon termination, you must cease all use of the Extension and uninstall it from your browser(s).</p>
-      <p>You may terminate your use of the Extension at any time by uninstalling it. Uninstalling the Extension will clear all locally stored preferences and history.</p>
-      <p>Sections 9, 10, 11, 12, and 16 shall survive any termination of these Terms.</p>
-    </section>
+      <!-- Section 9 -->
+      <section class="pp-section" id="warranty-disclaimer">
+        <h2><span class="sec-num">9</span> Warranty Disclaimer</h2>
+        <p>THE SERVICE IS PROVIDED ON AN <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong> BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESSED OR IMPLIED. The Developer makes no warranties regarding the following:</p>
+        <ul>
+          <li>The Service will be completely uninterrupted, timely, secure, or free from operational bugs.</li>
+          <li>All course downloads will compile successfully (which is dependent on internet stability, Google API uptime, and class configurations).</li>
+          <li>The Extension will maintain compatibility with future updates of Google Chrome, Edge, or Google Classroom.</li>
+        </ul>
+      </section>
 
-    <!-- 16 -->
-    <section class="tos-section" id="governing-law">
-      <h2><span class="sec-num">16</span> Governing Law &amp; Dispute Resolution</h2>
-      <p>These Terms shall be governed by and construed in accordance with the laws of Pakistan, without regard to its conflict-of-law provisions. Any disputes arising from these Terms or your use of the Extension shall first be attempted to be resolved through good-faith negotiation. If unresolved, such disputes shall be subject to the exclusive jurisdiction of the courts located in Islamabad, Pakistan.</p>
-      <p>If any provision of these Terms is held to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.</p>
-    </section>
+      <!-- Section 10 -->
+      <section class="pp-section" id="limitation-liability">
+        <h2><span class="sec-num">10</span> Limitation of Liability</h2>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE STATUTE, IN NO EVENT SHALL THE DEVELOPER BE LIABLE FOR ANY INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES arising from your use or inability to use the Service. This includes, without limitation, loss of course files, academic delays, or Google account locking. Because the Extension is provided free of charge, the Developer's cumulative liability for all claims shall not exceed **USD $0**.</p>
+      </section>
 
-    <!-- 17 -->
-    <section class="tos-section" id="contact">
-      <h2><span class="sec-num">17</span> Contact Information</h2>
-      <p>If you have any questions, concerns, or feedback regarding these Terms of Service or the Extension, please contact the Developer at:</p>
-      <ul>
-        <li><strong>Developer:</strong> Mohsin Khan</li>
-        <li><strong>Email:</strong> <a href="mailto:mohsinkhan.devs@gmail.com">mohsinkhan.devs@gmail.com</a></li>
-        <li><strong>Feature Requests:</strong> <a href="https://forms.gle/VzWq2Uxu9GXkv4XB7" target="_blank">Submit via Google Form</a></li>
-        <li><strong>Home Page:</strong> <a href="https://classroom.mohsinkhandevs.com" target="_blank">mohsinkhandevs.com</a></li>
-        <li><strong>Privacy Policy:</strong> <a href="https://sites.google.com/view/classroom-pro-privacy/home" target="_blank">View Privacy Policy</a></li>
-      </ul>
-    </section>
+      <!-- Section 11 -->
+      <section class="pp-section" id="indemnification">
+        <h2><span class="sec-num">11</span> Indemnification</h2>
+        <p>You agree to defend, indemnify, and hold harmless the Developer from any liabilities, claims, losses, costs, or damages (including reasonable legal fees) arising from: (a) your violation of these Terms; (b) your misuse of the Service; or (c) your infringement upon the intellectual property or academic guidelines of your school or any third party.</p>
+      </section>
 
-    <div class="tos-footer">
-      <p>© 2025–2026 Mohsin Khan. All rights reserved. &nbsp;·&nbsp; <a href="https://classroom.mohsinkhandevs.com">Home Page</a> &nbsp;·&nbsp; <a href="https://sites.google.com/view/classroom-pro-privacy/home" target="_blank">Privacy Policy</a></p>
-      <p style="margin-top:8px;">Classroom Content Downloader is not affiliated with, endorsed by, or sponsored by Google LLC.</p>
-    </div>
-  </main>
+      <!-- Section 12 -->
+      <section class="pp-section" id="third-party">
+        <h2><span class="sec-num">12</span> Third-Party Libraries and APIs</h2>
+        <p>The Service interacts with Google's API infrastructures and incorporates the open-source **JSZip** library to assemble directories inside your browser. The Developer is not responsible for the performance, policies, or operational accessibility of Google's network services.</p>
+      </section>
 
-</div>
+      <!-- Section 13 -->
+      <section class="pp-section" id="changes">
+        <h2><span class="sec-num">13</span> Changes to These Terms</h2>
+        <p>The Developer reserves the right to modify these Terms. When changes are made, the "Effective Date" at the top of this document will be updated. Your continued use of the Extension following an update indicates your active acceptance of the modified Terms.</p>
+      </section>
+
+      <!-- Section 14 -->
+      <section class="pp-section" id="termination">
+        <h2><span class="sec-num">14</span> License Termination</h2>
+        <p>The Developer reserves the right to terminate your license to utilize the Service at any time if you are found violating these Terms. You can terminate this agreement at any time by uninstalling the Extension, which will automatically erase all local caches and preference files.</p>
+      </section>
+
+      <!-- Section 15 -->
+      <section class="pp-section" id="governing-law">
+        <h2><span class="sec-num">15</span> Governing Law and Jurisdiction</h2>
+        <p>These Terms shall be interpreted and governed in accordance with the laws of Pakistan, excluding its conflicts of law rules. Any dispute arising from your use of the Service that cannot be resolved through friendly coordination shall be submitted to the exclusive jurisdiction of the courts located in Islamabad, Pakistan.</p>
+      </section>
+
+      <!-- Section 16 -->
+      <section class="pp-section" id="contact">
+        <h2><span class="sec-num">16</span> Developer Contact Information</h2>
+        <p>For questions, support, or inquiries regarding these Terms, please contact the developer directly:</p>
+        <ul>
+          <li><strong>Developer:</strong> Mohsin Khan</li>
+          <li><strong>Email:</strong> <a href="mailto:mohsinkhan.devs@gmail.com">mohsinkhan.devs@gmail.com</a></li>
+          <li><strong>Website:</strong> <a href="https://classroom.mohsinkhandevs.com">classroom.mohsinkhandevs.com</a></li>
+        </ul>
+      </section>
+
+      <!-- Document Footer -->
+      <div class="pp-footer">
+        <p>© 2026 Mohsin Khan. All rights reserved. &nbsp;·&nbsp; <a href="/">Back to Home</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/support">Support Center</a></p>
+        <p>Google Classroom is a trademark of Google LLC. Classroom Pro Downloader is an independent utility and is not affiliated with Google LLC.</p>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script>
+    // Highlight TOC links as sections scroll into view
+    const sections = document.querySelectorAll('.pp-section, .pp-header');
+    const tocLinks = document.querySelectorAll('.toc-list a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(link => link.classList.remove('active'));
+          const id = entry.target.id;
+          const activeLink = document.querySelector(`.toc-list a[href="#${id}"]`);
+          if (activeLink) activeLink.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(sec => observer.observe(sec));
+  </script>
 </body>
 </html>

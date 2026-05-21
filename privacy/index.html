@@ -4,623 +4,698 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Classroom Pro Downloader</title>
-  <meta name="description" content="Privacy Policy for Classroom Pro Downloader. Learn how we handle your data, which Google API scopes we use, and our commitment to zero data collection." />
+  <meta name="description" content="Privacy Policy for Classroom Pro Downloader. Learn how we handle your data, our client-side architecture, and our commitment to zero data collection." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #080b14;
-      color: #e2e8f0;
-      line-height: 1.7;
-      font-size: 16px;
+    /* ============================================================
+       Classroom Pro Downloader — Gold Standard Privacy Policy CSS
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    a { color: #3b82f6; text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
-    /* ─── Nav ─── */
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: #030712;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #030712;
+      color: #f3f4f6;
+      line-height: 1.62;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.3s;
+    }
+    a:hover {
+      color: #60a5fa;
+      text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+    }
+
+    /* ─── Background Orbs ─── */
+    .bg-orbs {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.12;
+    }
+    .orb-1 {
+      top: -10%;
+      left: 10%;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, #3b82f6 0%, #8b5cf6 100%);
+    }
+    .orb-2 {
+      top: 40%;
+      right: -10%;
+      width: 35vw;
+      height: 35vw;
+      background: radial-gradient(circle, #8b5cf6 0%, #10b981 100%);
+    }
+
+    /* ─── Navigation ─── */
     nav {
-      background: rgba(8,11,20,0.9);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 0 24px;
-      height: 60px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(3, 7, 18, 0.8);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 70px;
     }
-    .nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.95rem; color: #e2e8f0; text-decoration: none; }
-    .logo-icon { font-size: 1.2rem; }
-    .nav-home {
-      font-size: 0.85rem;
-      color: #94a3b8;
+    .nav-logo {
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #f9fafb;
+      text-decoration: none;
     }
-    .nav-home:hover { color: #e2e8f0; text-decoration: none; }
+    .nav-logo strong {
+      font-weight: 800;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo-icon {
+      font-size: 1.4rem;
+    }
+    .nav-home {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #9ca3af;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-home:hover {
+      color: #f9fafb;
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: translateX(-2px);
+      text-decoration: none;
+    }
 
-    /* ─── Layout ─── */
-    .page-wrap {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 0;
-      max-width: 1100px;
+    /* ─── Page Layout ─── */
+    .page-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: 120px 28px 80px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
     }
 
     /* ─── Sidebar TOC ─── */
-    .toc {
+    aside {
       position: sticky;
-      top: 80px;
+      top: 118px;
       height: fit-content;
-      padding-right: 40px;
+      align-self: start;
     }
     .toc-title {
-      font-size: 0.7rem;
-      font-weight: 700;
+      font-size: 0.72rem;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #475569;
-      margin-bottom: 16px;
+      letter-spacing: 0.15em;
+      color: #4b5563;
+      margin-bottom: 20px;
     }
-    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
     .toc-list a {
-      font-size: 0.82rem;
-      color: #64748b;
-      transition: color 0.2s;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #9ca3af;
       display: block;
-      padding: 3px 0;
+      padding: 6px 0;
       border-left: 2px solid transparent;
-      padding-left: 10px;
+      padding-left: 14px;
+      transition: all 0.3s var(--transition);
     }
-    .toc-list a:hover { color: #93c5fd; border-color: #3b82f6; text-decoration: none; }
-    .toc-list a.active { color: #93c5fd; border-color: #3b82f6; }
+    .toc-list a:hover {
+      color: #60a5fa;
+      border-color: rgba(59, 130, 246, 0.3);
+      text-decoration: none;
+    }
+    .toc-list a.active {
+      color: #60a5fa;
+      border-color: #3b82f6;
+      font-weight: 600;
+    }
 
-    /* ─── Content ─── */
-    .pp-content { min-width: 0; }
-    .pp-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .pp-eyebrow {
+    /* ─── Content styling ─── */
+    main {
+      min-width: 0;
+    }
+    .pp-header {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .pp-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.72rem;
-      font-weight: 600;
+      font-size: 0.75rem;
+      font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #3b82f6;
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.2);
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.18);
       border-radius: 100px;
       padding: 4px 12px;
       margin-bottom: 16px;
     }
-    .pp-title { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 12px; }
-    .pp-meta { font-size: 0.85rem; color: #64748b; }
-    .pp-meta span { color: #94a3b8; font-weight: 500; }
+    .pp-title {
+      font-size: clamp(2rem, 5vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #f9fafb;
+      margin-bottom: 12px;
+    }
+    .pp-meta {
+      font-size: 0.88rem;
+      color: #9ca3af;
+    }
+    .pp-meta span {
+      color: #f3f4f6;
+      font-weight: 600;
+    }
 
-    /* ─── Sections ─── */
-    .pp-section { margin-bottom: 48px; scroll-margin-top: 90px; }
-    .pp-section h2 {
-      font-size: 1.2rem;
+    /* ─── Highlight Cards ─── */
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .highlight-card {
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .highlight-card:hover {
+      border-color: rgba(99, 102, 241, 0.25);
+      transform: translateY(-2px);
+    }
+    .hl-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .hl-title {
+      font-size: 1rem;
       font-weight: 700;
-      color: #f1f5f9;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: #f9fafb;
+      margin-bottom: 6px;
+    }
+    .hl-text {
+      font-size: 0.88rem;
+      color: #9ca3af;
+      margin: 0;
+    }
+
+    /* ─── Callout Boxes ─── */
+    .callout {
+      padding: 18px 24px;
+      border-radius: 12px;
+      margin: 24px 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      backdrop-filter: blur(10px);
+    }
+    .callout-blue  { background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.15); border-left: 4px solid #3b82f6; color: #93c5fd; }
+    .callout-green { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.15); border-left: 4px solid #10b981; color: #6ee7b7; }
+    .callout-purple{ background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.15); border-left: 4px solid #8b5cf6; color: #c4b5fd; }
+
+    /* ─── Policy Sections ─── */
+    .pp-section {
+      margin-bottom: 56px;
+      scroll-margin-top: 100px;
+    }
+    .pp-section h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #f9fafb;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      letter-spacing: -0.02em;
     }
     .sec-num {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 28px;
-      height: 28px;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      border-radius: 7px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #fff;
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #ffffff;
       flex-shrink: 0;
     }
-    .pp-section p { color: #94a3b8; font-size: 0.92rem; margin-bottom: 12px; }
+    .pp-section p {
+      color: #9ca3af;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .pp-section strong {
+      color: #e5e7eb;
+    }
     .pp-section ul, .pp-section ol {
       padding-left: 20px;
-      color: #94a3b8;
-      font-size: 0.92rem;
+      color: #9ca3af;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
     }
-    .pp-section li { margin-bottom: 8px; }
-    .pp-section strong { color: #e2e8f0; }
-    .pp-section a { color: #3b82f6; }
+    .pp-section li {
+      margin-bottom: 10px;
+    }
     .pp-section h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #cbd5e1;
-      margin: 20px 0 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      margin: 28px 0 14px;
+      letter-spacing: -0.01em;
     }
+
     code {
-      background: rgba(59,130,246,0.12);
+      background: rgba(59, 130, 246, 0.08);
       color: #93c5fd;
-      padding: 2px 7px;
-      border-radius: 5px;
-      font-size: 0.82em;
-      font-family: 'Courier New', monospace;
-      border: 1px solid rgba(59,130,246,0.2);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      font-family: 'Courier New', Courier, monospace;
+      border: 1px solid rgba(59, 130, 246, 0.15);
     }
 
-    /* ─── Callout boxes ─── */
-    .callout {
-      padding: 16px 20px;
-      border-radius: 10px;
-      margin: 16px 0;
-      font-size: 0.88rem;
-      line-height: 1.6;
+    /* ─── Premium Scope Table ─── */
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.2);
+      margin: 20px 0 28px;
     }
-    .callout-blue  { background: rgba(59,130,246,0.08); border-left: 3px solid #3b82f6; color: #93c5fd; }
-    .callout-green { background: rgba(52,211,153,0.08); border-left: 3px solid #34d399; color: #6ee7b7; }
-    .callout-purple{ background: rgba(139,92,246,0.08); border-left: 3px solid #8b5cf6; color: #c4b5fd; }
-    .callout-yellow{ background: rgba(251,191,36,0.08); border-left: 3px solid #fbbf24; color: #fde68a; }
-
-    /* ─── Scope table ─── */
     .scope-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
-      margin: 16px 0;
-    }
-    .scope-table thead th {
+      font-size: 0.88rem;
       text-align: left;
-      padding: 10px 14px;
+    }
+    .scope-table th {
+      padding: 14px 18px;
       font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #64748b;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: #6b7280;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(15, 23, 42, 0.3);
     }
-    .scope-table tbody tr:hover { background: rgba(255,255,255,0.02); }
     .scope-table td {
-      padding: 12px 14px;
+      padding: 16px 18px;
       vertical-align: top;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      color: #94a3b8;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: #9ca3af;
+      line-height: 1.5;
     }
-    .scope-table td:first-child { color: #e2e8f0; min-width: 220px; }
+    .scope-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .scope-table td:first-child {
+      color: #f3f4f6;
+      font-family: monospace;
+      font-size: 0.82rem;
+      min-width: 250px;
+    }
     .scope-badge {
       display: inline-block;
       font-size: 0.7rem;
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 100px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .scope-badge.read { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid rgba(52,211,153,0.2); }
-    .scope-badge.write { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
-
-    /* ─── Zero-data hero card ─── */
-    .zero-data-card {
-      background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06));
-      border: 1px solid rgba(59,130,246,0.15);
-      border-radius: 14px;
-      padding: 24px;
-      margin-bottom: 32px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-    .zero-data-icon {
-      font-size: 2rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .zero-data-card h3 {
-      font-size: 1rem;
       font-weight: 700;
-      color: #f1f5f9;
-      margin-bottom: 6px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
-    .zero-data-card p {
-      font-size: 0.88rem;
-      color: #94a3b8;
-      margin: 0;
+    .scope-badge.read {
+      background: rgba(16, 185, 129, 0.08);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.18);
     }
 
     /* ─── Footer ─── */
     .pp-footer {
-      margin-top: 64px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 80px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       font-size: 0.82rem;
-      color: #475569;
+      color: #6b7280;
+      line-height: 1.7;
     }
-    .pp-footer a { color: #3b82f6; }
+    .pp-footer p {
+      margin-bottom: 8px;
+    }
 
     /* ─── Responsive ─── */
-    @media (max-width: 768px) {
-      .page-wrap { grid-template-columns: 1fr; }
-      .toc { display: none; }
-      .scope-table { font-size: 0.78rem; }
-      .scope-table td:first-child { min-width: 0; }
+    @media (max-width: 900px) {
+      .page-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-top: 100px;
+      }
+      aside {
+        display: none; /* Hide TOC on smaller screens */
+      }
+      .highlight-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── Nav ─── -->
-<nav>
-  <a href="/" class="nav-logo">
-    <span class="logo-icon">⚡</span>
-    <span>Classroom <strong>Downloader</strong></span>
-  </a>
-  <a href="/" class="nav-home">← Back to Home</a>
-</nav>
+  <!-- Background Orbs -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
 
-<div class="page-wrap">
-
-  <!-- ─── Sidebar TOC ─── -->
-  <aside class="toc" aria-label="Table of contents">
-    <p class="toc-title">On This Page</p>
-    <ul class="toc-list">
-      <li><a href="#overview">Overview</a></li>
-      <li><a href="#zero-collection">1. Zero Data Collection</a></li>
-      <li><a href="#google-apis">2. Google API Scopes</a></li>
-      <li><a href="#limited-use">3. Limited Use Disclosure</a></li>
-      <li><a href="#local-storage">4. Local Storage</a></li>
-      <li><a href="#data-security">5. Data Security &amp; Protection</a></li>
-      <li><a href="#data-flow">6. How Data Flows</a></li>
-      <li><a href="#third-party">7. Third-Party Services</a></li>
-      <li><a href="#children">8. Children's Privacy</a></li>
-      <li><a href="#data-retention">9. Data Retention &amp; Deletion</a></li>
-      <li><a href="#changes">10. Policy Changes</a></li>
-      <li><a href="#contact">11. Contact</a></li>
-    </ul>
-  </aside>
-
-  <!-- ─── Main Content ─── -->
-  <main class="pp-content">
-
-    <!-- Header -->
-    <div class="pp-header" id="overview">
-      <span class="pp-eyebrow">🔒 Legal Document</span>
-      <h1 class="pp-title">Privacy Policy</h1>
-      <p class="pp-meta">
-        <span>Effective Date:</span> May 15, 2026 &nbsp;·&nbsp;
-        <span>Product:</span> Classroom Pro Downloader (Chrome &amp; Edge Extension) &nbsp;·&nbsp;
-        <span>Developer:</span> Mohsin Khan
-      </p>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span>Classroom <strong>Pro</strong></span>
+      </a>
+      <a href="/" class="nav-home">← Back to Home</a>
     </div>
+  </nav>
 
-    <!-- Zero-data hero cards -->
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 36px;">
-      <div class="zero-data-card">
-        <div class="zero-data-icon">🚫</div>
-        <div>
-          <h3>No Data Collected</h3>
-          <p>We collect absolutely nothing. No accounts, no analytics, no telemetry.</p>
+  <!-- Page Wrapper -->
+  <div class="page-container">
+
+    <!-- Sidebar Table of Contents -->
+    <aside aria-label="Table of contents">
+      <p class="toc-title">On This Page</p>
+      <ul class="toc-list">
+        <li><a href="#overview" class="active">Overview</a></li>
+        <li><a href="#zero-collection">1. Zero Data Collection</a></li>
+        <li><a href="#google-apis">2. Google API Scopes</a></li>
+        <li><a href="#local-downloads">3. Secure Local Downloads</a></li>
+        <li><a href="#limited-use">4. Limited Use Disclosure</a></li>
+        <li><a href="#local-storage">5. Local Storage</a></li>
+        <li><a href="#data-security">6. Technical Security</a></li>
+        <li><a href="#data-flow">7. How Data Flows</a></li>
+        <li><a href="#third-party">8. Third-Party Services</a></li>
+        <li><a href="#children">9. Children's Privacy</a></li>
+        <li><a href="#data-retention">10. Retention &amp; Deletion</a></li>
+        <li><a href="#changes">11. Policy Changes</a></li>
+        <li><a href="#contact">12. Contact Details</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main>
+
+      <!-- Document Header -->
+      <div class="pp-header" id="overview">
+        <span class="pp-badge">🔒 Legal &amp; Compliance</span>
+        <h1 class="pp-title">Privacy Policy</h1>
+        <p class="pp-meta">
+          Effective Date: <span>May 21, 2026</span> &nbsp;·&nbsp;
+          Product: <span>Classroom Pro Downloader</span> &nbsp;·&nbsp;
+          Version: <span>v5.1.0</span>
+        </p>
+      </div>
+
+      <!-- Quick Metrics Cards -->
+      <div class="highlight-grid">
+        <div class="highlight-card">
+          <div class="hl-icon">🚫</div>
+          <div>
+            <h3 class="hl-title">Zero Analytics or Tracking</h3>
+            <p class="hl-text">No logins, no analytics SDKs, no database sync, and no tracking scripts. We collection absolutely nothing.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="hl-icon">💻</div>
+          <div>
+            <h3 class="hl-title">100% Local Pipeline</h3>
+            <p class="hl-text">Course scanning, ZIP file generation, and file compilation are done entirely in your browser memory.</p>
+          </div>
         </div>
       </div>
-      <div class="zero-data-card">
-        <div class="zero-data-icon">🖥️</div>
-        <div>
-          <h3>100% Local Processing</h3>
-          <p>Everything happens inside your browser. No data ever touches our servers.</p>
+
+      <div class="callout callout-blue">
+        This Privacy Policy explains how <strong>Classroom Pro Downloader</strong> protects your information. By utilizing this browser extension, you consent to the practices detailed below. This policy complies strictly with the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including its strict Limited Use requirements.
+      </div>
+
+      <!-- Section 1 -->
+      <section class="pp-section" id="zero-collection">
+        <h2><span class="sec-num">1</span> Zero Data Collection Philosophy</h2>
+        <p><strong>Classroom Pro Downloader does NOT collect, store, transmit, log, or share any of your personal details, Google account information, course content, or usage analytics with any external server — including ours.</strong></p>
+        <p>The extension is completely decentralized. It has no backend servers, no customer databases, and no cloud-hosted APIs. It functions purely as a sandboxed, client-side browser plugin executing directly in your local environment and communicating exclusively with official Google API endpoints on your behalf.</p>
+        <ul>
+          <li><strong>No Accounts:</strong> No user registration, authentication portals, or third-party sign-ups.</li>
+          <li><strong>No Telemetry:</strong> No telemetry suites, crash collectors, or event trackers are packaged with the code.</li>
+          <li><strong>No Exposure:</strong> The Developer cannot view, access, or manipulate any classroom data, enrolled courses, or materials scanned.</li>
+        </ul>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="pp-section" id="google-apis">
+        <h2><span class="sec-num">2</span> Google API Scopes &amp; Purpose</h2>
+        <p>To identify and organize course files, the extension asks for authorization to access specific Google API scopes during sign-in. We rely strictly on a least-privilege layout, requesting only the exact access required to scan materials:</p>
+
+        <div class="table-container">
+          <table class="scope-table">
+            <thead>
+              <tr>
+                <th>Google API Scope</th>
+                <th>Type</th>
+                <th>Functional Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>classroom.courses.readonly</code></td>
+                <td><span class="scope-badge read">Read-Only</span></td>
+                <td>Retrieves lists of active courses you are enrolled in to let you select which classes to scan.</td>
+              </tr>
+              <tr>
+                <td><code>classroom.coursework.me.readonly</code></td>
+                <td><span class="scope-badge read">Read-Only</span></td>
+                <td>Reads coursework lists, assignments, and structural information containing course material attachments.</td>
+              </tr>
+              <tr>
+                <td><code>classroom.coursework.students.readonly</code></td>
+                <td><span class="scope-badge read">Read-Only</span></td>
+                <td>Accesses student-visible coursework and teacher attachments published in your courses.</td>
+              </tr>
+              <tr>
+                <td><code>classroom.courseworkmaterials.readonly</code></td>
+                <td><span class="scope-badge read">Read-Only</span></td>
+                <td>Reads static class materials posted directly to the Course Stream or Coursework page.</td>
+              </tr>
+              <tr>
+                <td><code>classroom.announcements.readonly</code></td>
+                <td><span class="scope-badge read">Read-Only</span></td>
+                <td>Scans course announcements to find and download any files or shortcuts attached within stream updates.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
+        <p>You can view, manage, and instantly revoke the extension's API authorizations at any time by visiting your official Google Account control panel at <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>.</p>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="pp-section" id="local-downloads">
+        <h2><span class="sec-num">3</span> Safe downloads with Zero Google Drive Scopes</h2>
+        <p>Traditional tools request highly privileged Google Drive read/write scopes (like <code>drive.readonly</code> or <code>drive</code>) to download materials. These scopes grant full visibility into all your personal files, spreadsheets, and private folders inside Google Drive, presenting an unnecessary security risk.</p>
+        
+        <div class="callout callout-green">
+          <strong>Zero Google Drive Permissions:</strong> Classroom Pro Downloader operates under a strict, modern safety model. It requests **zero Google Drive scopes**. 
+        </div>
+
+        <p>Instead of requesting Drive API scopes, our background script processes download calls client-side using secure, cookie-authenticated browser requests. The background worker uses the user's active, pre-existing Google Classroom cookies and active session directly (via <code>credentials: 'include'</code> fetches), fetching attachment assets safely in the background. This local direct download model keeps your Google Drive 100% private and protected.</p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="pp-section" id="limited-use">
+        <h2><span class="sec-num">4</span> Google Limited Use Disclosure</h2>
+        <p>Classroom Pro Downloader's use and transfer of information received from Google APIs adheres strictly to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the rigid <strong>Limited Use</strong> requirements:</p>
+        <ul>
+          <li><strong>Sole Utility:</strong> Google API data is fetched only to provide the utility you explicitly request — scanning coursework and assembling zip folders. It is never used for secondary functions.</li>
+          <li><strong>Zero Advertising:</strong> No data obtained through Google APIs is analyzed, repurposed, or transferred to third-party ad networks or data aggregators.</li>
+          <li><strong>No Transference:</strong> Your credentials, tokens, and course details are never sold, traded, shared, or sent to any third party.</li>
+          <li><strong>No Human Inspection:</strong> The scanning process is completely automated. No person, including the Developer, can access or read your API responses.</li>
+        </ul>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="pp-section" id="local-storage">
+        <h2><span class="sec-num">5</span> Local Storage Details</h2>
+        <p>The extension stores a minimal set of values on your machine via the sandboxed <code>chrome.storage.local</code> API. These elements never leave your local browser:</p>
+        <ul>
+          <li><strong>Format Settings:</strong> Remembers your preferred document export options.</li>
+          <li><strong>Filter Checkboxes:</strong> Persists your chosen file extension preferences.</li>
+          <li><strong>Local Download Log:</strong> Keeps a running log of your last 50 compiled files (timestamps, course name, download count) for your own reference. This registry can be reviewed and completely wiped at any time on the Options page.</li>
+        </ul>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="pp-section" id="data-security">
+        <h2><span class="sec-num">6</span> Technical Security &amp; Isolation</h2>
+        <p>To defend your browser session, Classroom Pro Downloader incorporates robust engineering controls:</p>
+        <ul>
+          <li><strong>In-Transit Security:</strong> All data fetched from Google's API services is secured using encrypted <strong>HTTPS (TLS 1.3)</strong> protocols.</li>
+          <li><strong>In-Memory Transiency:</strong> Scanned materials, file binaries, and metadata are held purely in transient system RAM. As soon as the ZIP file compiler finishes saving the folder structure to your Downloads directory, the memory is instantly freed by the browser.</li>
+          <li><strong>Strict Content Security Policy (CSP):</strong> The code operates in compliance with Manifest V3 parameters. There are no remote scripts, dynamically loaded code, or external stylesheets. Everything is packaged locally to prevent security vulnerabilities.</li>
+        </ul>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="pp-section" id="data-flow">
+        <h2><span class="sec-num">7</span> The Data Flow Pipeline</h2>
+        <p>This transparent loop details how information moves during a download event:</p>
+        <ol>
+          <li><strong>Client Request:</strong> You activate the extension. It uses Chrome's built-in identity API to local-fetch a secure sign-in token.</li>
+          <li><strong>API Fetch:</strong> The extension lists your courses via direct HTTPS calls to Google Classroom API.</li>
+          <li><strong>Local Download:</strong> Attachment links are fetched locally via secure session credentials directly in the background worker.</li>
+          <li><strong>ZIP Compilation:</strong> The local, open-source JSZip utility structures your files into folders in system memory.</li>
+          <li><strong>Local Write:</strong> The browser saves the finished ZIP archive directly to your Downloads folder. The session data is then instantly cleared.</li>
+        </ol>
+      </section>
+
+      <!-- Section 8 -->
+      <section class="pp-section" id="third-party">
+        <h2><span class="sec-num">8</span> Third-Party Services</h2>
+        <p>The code interacts solely with standard, official systems. No third-party trackers are integrated:</p>
+        <ul>
+          <li><strong>Google APIs:</strong> Direct secure endpoint calls to <code>classroom.googleapis.com</code>.</li>
+          <li><strong>Local JSZip Library:</strong> Open-source, compiled internally in your local extension sandbox with no network connectivity.</li>
+        </ul>
+      </section>
+
+      <!-- Section 9 -->
+      <section class="pp-section" id="children">
+        <h2><span class="sec-num">9</span> Children's Privacy Compliance</h2>
+        <p>We are fully compliant with Children's Online Privacy Protection (COPPA) standards. Classroom Pro Downloader collects zero personal information, is completely safe for educators and students of all ages, and operates under student-managed Google Classroom security profiles.</p>
+      </section>
+
+      <!-- Section 10 -->
+      <section class="pp-section" id="data-retention">
+        <h2><span class="sec-num">10</span> Retention, Deletion, &amp; Revocation</h2>
+        <p>Because we do not store your data, there are no databases to clear. You can purge the local configuration and remove credentials immediately:</p>
+        <ul>
+          <li><strong>Reset Extension:</strong> Clear your local download history and checkboxes from the extension options widget.</li>
+          <li><strong>Revoke Tokens:</strong> Disconnect the extension instantly via your Google settings.</li>
+          <li><strong>Uninstall:</strong> Removing the extension from your browser immediately deletes 100% of its stored parameters.</li>
+        </ul>
+        <div class="callout callout-blue">
+          For technical questions or direct assistance with data deletion, contact us at <a href="mailto:mohsinkhan.devs@gmail.com">mohsinkhan.devs@gmail.com</a>. We respond to all requests within 5 business days.
+        </div>
+      </section>
+
+      <!-- Section 11 -->
+      <section class="pp-section" id="changes">
+        <h2><span class="sec-num">11</span> Policy Changes</h2>
+        <p>Any revisions to this document will be reflected here with an updated Effective Date. Users are notified of update updates via Chrome Web Store release notices and the extension options widget.</p>
+      </section>
+
+      <!-- Section 12 -->
+      <section class="pp-section" id="contact">
+        <h2><span class="sec-num">12</span> Developer Contact Details</h2>
+        <p>For inquiries, support questions, or suggestions regarding this policy, feel free to contact the developer:</p>
+        <ul>
+          <li><strong>Developer:</strong> Mohsin Khan</li>
+          <li><strong>Support Email:</strong> <a href="mailto:mohsinkhan.devs@gmail.com">mohsinkhan.devs@gmail.com</a></li>
+          <li><strong>Website:</strong> <a href="https://classroom.mohsinkhandevs.com">classroom.mohsinkhandevs.com</a></li>
+        </ul>
+      </section>
+
+      <!-- Document Footer -->
+      <div class="pp-footer">
+        <p>© 2026 Mohsin Khan. All rights reserved. &nbsp;·&nbsp; <a href="/">Back to Home</a> &nbsp;·&nbsp; <a href="/tos">Terms of Service</a> &nbsp;·&nbsp; <a href="/support">Support Center</a></p>
+        <p>Google Classroom and Google Drive are registered trademarks of Google LLC. Classroom Pro Downloader is an independent software tool and is not associated with Google LLC.</p>
       </div>
-    </div>
 
-    <div class="callout callout-blue">
-      This Privacy Policy describes how <strong>Classroom Pro Downloader</strong> handles your data. By installing or using the extension, you agree to the practices described below. This policy complies with the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including its Limited Use requirements.
-    </div>
+    </main>
 
-    <!-- 1 -->
-    <section class="pp-section" id="zero-collection">
-      <h2><span class="sec-num">1</span> Zero Data Collection</h2>
-      <p><strong>Classroom Pro Downloader does NOT collect, store, transmit, log, or share any of your personal information, Google account data, file contents, or usage statistics with any external server — including ours.</strong></p>
-      <p>The extension has no backend, no database, and no remote server of any kind. It operates entirely as a client-side browser extension that communicates only with Google's official API infrastructure on your behalf.</p>
-      <ul>
-        <li>No user accounts are created or required on our end.</li>
-        <li>No personal identifiers (name, email, Google ID) are ever recorded.</li>
-        <li>No analytics SDK, crash-reporting library, or tracking pixel is included.</li>
-        <li>No file content you download is seen, read, copied, or cached by the Developer.</li>
-      </ul>
-    </section>
+  </div>
 
-    <!-- 2 -->
-    <section class="pp-section" id="google-apis">
-      <h2><span class="sec-num">2</span> Google API Scopes &amp; Why We Need Them</h2>
-      <p>To function, the extension uses Google's official OAuth 2.0 protocol to access the following scopes. Each scope is the minimum required for that specific feature — we request nothing extra.</p>
+  <script>
+    // Highlight TOC links as sections scroll into view
+    const sections = document.querySelectorAll('.pp-section, .pp-header');
+    const tocLinks = document.querySelectorAll('.toc-list a');
 
-      <h3>Classroom Scopes (Read-Only)</h3>
-      <table class="scope-table">
-        <thead>
-          <tr>
-            <th>Scope</th>
-            <th>Access</th>
-            <th>Why it's needed</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>classroom.courses.readonly</code></td>
-            <td><span class="scope-badge read">Read-Only</span></td>
-            <td>Fetches the list of your active enrolled courses so you can choose which ones to download from.</td>
-          </tr>
-          <tr>
-            <td><code>classroom.coursework.me.readonly</code></td>
-            <td><span class="scope-badge read">Read-Only</span></td>
-            <td>Reads assignments and coursework items posted to you, including their attached files.</td>
-          </tr>
-          <tr>
-            <td><code>classroom.coursework.students.readonly</code></td>
-            <td><span class="scope-badge read">Read-Only</span></td>
-            <td>Reads student-visible coursework materials attached to class assignments.</td>
-          </tr>
-          <tr>
-            <td><code>classroom.courseworkmaterials.readonly</code></td>
-            <td><span class="scope-badge read">Read-Only</span></td>
-            <td>Accesses materials posted directly to a course stream (not part of an assignment).</td>
-          </tr>
-          <tr>
-            <td><code>classroom.announcements.readonly</code></td>
-            <td><span class="scope-badge read">Read-Only</span></td>
-            <td>Reads course announcements that may contain file attachments you wish to download.</td>
-          </tr>
-        </tbody>
-      </table>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(link => link.classList.remove('active'));
+          const id = entry.target.id;
+          const activeLink = document.querySelector(`.toc-list a[href="#${id}"]`);
+          if (activeLink) activeLink.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
 
-      <h3>Google Drive Scopes</h3>
-      <table class="scope-table">
-        <thead>
-          <tr>
-            <th>Scope</th>
-            <th>Access</th>
-            <th>Why it's needed</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>drive.readonly</code></td>
-            <td><span class="scope-badge read">Read-Only</span></td>
-            <td>Reads file metadata (MIME type, file size) and downloads the binary content of files attached to your Classroom materials directly to your device.</td>
-          </tr>
-          <tr>
-            <td><code>drive.file</code></td>
-            <td><span class="scope-badge write">Scoped Write</span></td>
-            <td>
-              Used <strong>exclusively</strong> to convert uploaded Microsoft Office files (e.g. <code>.docx</code>, <code>.pptx</code>) to PDF.
-              The process is: (1) a temporary Google Workspace copy is created, (2) exported to PDF locally, then (3) the temporary file is <strong>immediately and permanently deleted</strong>. No files created by this scope are ever retained.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="callout callout-yellow">
-        <strong>Note on <code>drive.file</code>:</strong> This scope only grants the extension access to files it creates itself — not your entire Drive. It cannot read, modify, or delete any of your pre-existing Drive files.
-      </div>
-
-      <p>You can review and revoke the extension's OAuth access at any time by visiting <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>.</p>
-    </section>
-
-    <!-- 3 -->
-    <section class="pp-section" id="limited-use">
-      <h2><span class="sec-num">3</span> Limited Use Disclosure</h2>
-      <p>Classroom Pro Downloader's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the <strong>Limited Use</strong> requirements. Specifically:</p>
-      <ul>
-        <li><strong>Single Purpose:</strong> Google user data accessed via API is used solely to provide the core feature — downloading your own Classroom files locally to your device as a ZIP archive. It is used for no other purpose.</li>
-        <li><strong>No Advertising:</strong> We do not use your Google data for advertising, retargeting, personalized or interest-based advertising, or any commercial profiling.</li>
-        <li><strong>No Selling:</strong> We do not sell, rent, lease, or trade your Google data to any third party, including advertising platforms, data brokers, or information resellers.</li>
-        <li><strong>No Transfer:</strong> Your data is never transferred to third-party apps, services, or individuals, except as required to provide the core download functionality (i.e., calling Google's own APIs).</li>
-        <li><strong>No Credit Assessment:</strong> We do not use your Google data to determine credit-worthiness or for lending purposes.</li>
-        <li><strong>No Human Access:</strong> No human, including the Developer, can read your Google data. The extension is fully automated and serverless.</li>
-        <li><strong>Compliance:</strong> All agents, contractors, and successors of the Developer are required to comply with the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>.</li>
-      </ul>
-      <div class="callout callout-green">
-        This extension is fully compliant with the Google API Services User Data Policy, including Limited Use restrictions. Data obtained from Google APIs is used only to provide the core feature you explicitly trigger.
-      </div>
-    </section>
-
-    <!-- 4 -->
-    <section class="pp-section" id="local-storage">
-      <h2><span class="sec-num">4</span> Local Storage</h2>
-      <p>The only data stored by the extension is saved locally on your device using the browser's <code>chrome.storage.local</code> API. This data <strong>never leaves your device</strong> and is never sent anywhere.</p>
-      <ul>
-        <li><strong>Export Format Preference:</strong> Your last chosen export format (PDF, Word, or original) is saved so you don't have to re-select it each time.</li>
-        <li><strong>File-Type Filter Preferences:</strong> Your toggled file-type checkboxes (e.g. "include PDFs", "exclude images") are persisted locally.</li>
-        <li><strong>Download History Log:</strong> A local log of your past 50 download sessions (course name, file count, date) is maintained for your own reference. This can be viewed and cleared at any time from the extension's Options page.</li>
-      </ul>
-      <p>You can clear all stored preferences and history at any time by visiting the extension's <strong>Options page</strong> (click the ⚙️ gear icon inside the extension widget) or by uninstalling the extension. Uninstalling the extension permanently removes all locally stored data.</p>
-    </section>
-
-    <!-- 5 -->
-    <section class="pp-section" id="data-security">
-      <h2><span class="sec-num">5</span> Data Security &amp; Protection Mechanisms</h2>
-      <p>We take the security and protection of your sensitive data seriously. In compliance with the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, we maintain a <strong>secure operating environment</strong> and take reasonable and appropriate steps to protect all data accessed via Google API Services against unauthorized or unlawful access, use, destruction, loss, alteration, or disclosure.</p>
-      <p>Although Classroom Pro Downloader does not collect, store, or transmit any data to external servers, we implement the following industry-standard security measures to protect your data while it is being processed within your browser:</p>
-
-      <h3>🔐 Encryption in Transit</h3>
-      <p>All communication between your browser and Google's API services is encrypted using <strong>TLS 1.2+ (HTTPS)</strong>. This includes:</p>
-      <ul>
-        <li>OAuth 2.0 authentication requests to <code>accounts.google.com</code></li>
-        <li>Classroom API calls to <code>classroom.googleapis.com</code></li>
-        <li>Drive API calls to <code>www.googleapis.com</code> for file metadata and content downloads</li>
-      </ul>
-      <p>No unencrypted HTTP connections are ever used. All API endpoints are accessed exclusively over HTTPS.</p>
-
-      <h3>🔑 OAuth Token Security</h3>
-      <p>Authentication is handled through Google's official OAuth 2.0 protocol via the browser's built-in <code>chrome.identity</code> API. The following safeguards are in place:</p>
-      <ul>
-        <li><strong>No tokens are stored persistently:</strong> OAuth access tokens are held in browser session memory only during active use and are managed entirely by the browser's identity system.</li>
-        <li><strong>No tokens are transmitted externally:</strong> Access tokens are never sent to any server, endpoint, or service other than Google's official API infrastructure.</li>
-        <li><strong>Token scope limitation:</strong> Tokens are scoped to the minimum permissions required (read-only Classroom access and read-only Drive access). The extension cannot modify, delete, or share your Google Classroom or Drive data.</li>
-        <li><strong>User-revocable:</strong> You can revoke the extension's access at any time by visiting <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>.</li>
-      </ul>
-
-      <h3>🧠 In-Memory Processing Only</h3>
-      <p>All sensitive data processing occurs entirely within your browser's volatile memory (RAM). Specifically:</p>
-      <ul>
-        <li>File content downloaded from Google Drive is held in memory only during the ZIP packaging process.</li>
-        <li>Course metadata (course names, assignment titles, file names) is used only for organizing the ZIP folder structure and is not persisted after the download completes.</li>
-        <li>Once the ZIP file is generated and saved to your local Downloads folder, all in-memory data (file binaries, metadata, and tokens) is released by the browser's garbage collector.</li>
-        <li>No file content, course data, or user information is written to disk by the extension, except for the final ZIP file saved to your Downloads folder via the browser's native download mechanism.</li>
-      </ul>
-
-      <h3>🛡️ No External Server / No Backend</h3>
-      <p>The extension operates a <strong>zero-server architecture</strong>. There is no Developer-controlled backend, database, cloud function, or intermediary proxy. This eliminates the following categories of risk entirely:</p>
-      <ul>
-        <li>No server-side data breaches — there is no server to breach.</li>
-        <li>No data-at-rest vulnerabilities — sensitive data is never stored at rest on any external system.</li>
-        <li>No third-party data sharing — your data never passes through any system other than your browser and Google's official API infrastructure.</li>
-      </ul>
-
-      <h3>🔒 Content Security Policy (CSP)</h3>
-      <p>The extension operates under Chrome's Manifest V3 security model, which enforces strict Content Security Policy rules:</p>
-      <ul>
-        <li>No remote code execution — all JavaScript is bundled locally within the extension package.</li>
-        <li>No inline script injection — the extension's service worker and content scripts are statically declared in the manifest.</li>
-        <li>No third-party script loading — the only external network requests are to Google's authenticated API endpoints.</li>
-      </ul>
-
-      <h3>📋 Access Controls</h3>
-      <p>Access to user data within the extension is limited by design:</p>
-      <ul>
-        <li>The extension can only be activated on <code>classroom.google.com</code> pages (as declared in the manifest's content script matches).</li>
-        <li>No developer or third party has access to your Google data — the extension is fully automated and client-side.</li>
-        <li>The extension requests only read-only permissions for Classroom and Drive data. It cannot create, modify, or delete your Classroom assignments, courses, or Drive files (except for temporary copies created during Office-to-PDF conversion, which are immediately deleted).</li>
-      </ul>
-
-      <div class="callout callout-green">
-        <strong>Summary:</strong> Your data is protected by encryption in transit (TLS/HTTPS), secure token handling via the browser's native identity system, in-memory-only processing, and a zero-server architecture that eliminates remote data storage risks entirely.
-      </div>
-    </section>
-
-    <!-- 6 -->
-    <section class="pp-section" id="data-flow">
-      <h2><span class="sec-num">6</span> How Your Data Flows</h2>
-      <p>Below is the complete data flow when you use the extension. No step involves any Developer-owned server.</p>
-      <ol>
-        <li><strong>Authentication:</strong> You click the extension icon. Your browser authenticates with Google via OAuth 2.0 using Chrome's built-in Identity API. An access token is issued by Google directly to your browser session.</li>
-        <li><strong>File Discovery:</strong> The extension calls the Google Classroom API to list your courses, coursework, materials, and announcements. All results stay in your browser's memory only.</li>
-        <li><strong>File Download:</strong> For each file you select, the extension calls the Google Drive API to download the file binary directly into your browser's memory.</li>
-        <li><strong>ZIP Packaging:</strong> The open-source <a href="https://stuk.github.io/jszip/" target="_blank" rel="noopener noreferrer">JSZip library</a> packages all downloaded files into a <code>.zip</code> archive entirely in-memory within your browser tab.</li>
-        <li><strong>Local Download:</strong> The ZIP file is saved to your computer's local Downloads folder via the browser's native download mechanism. No copy of any file is retained in the extension after this step.</li>
-        <li><strong>(Optional) PDF Conversion:</strong> If you convert an Office file to PDF, a temporary Google Workspace copy is created in your own Drive, exported to PDF, and the temporary copy is immediately deleted — all via direct Google API calls from your browser.</li>
-      </ol>
-      <div class="callout callout-purple">
-        At no point in this flow does any data pass through the Developer's servers. The chain is always: <strong>Your Browser → Google APIs → Your Device</strong>.
-      </div>
-    </section>
-
-    <!-- 7 -->
-    <section class="pp-section" id="third-party">
-      <h2><span class="sec-num">7</span> Third-Party Services</h2>
-      <p>The extension interacts with only the following external services. In each case, your browser communicates directly with the service — no Developer intermediary is involved.</p>
-      <ul>
-        <li><strong>Google Classroom API</strong> (<code>classroom.googleapis.com</code>) — to list your courses and materials.</li>
-        <li><strong>Google Drive API</strong> (<code>www.googleapis.com/drive</code>) — to fetch file metadata and download content.</li>
-        <li><strong>Google OAuth 2.0</strong> (<code>accounts.google.com</code>) — for secure, standard authentication.</li>
-        <li><strong>JSZip</strong> (bundled locally, version included in the extension package) — an open-source library used for client-side ZIP creation. It makes no network requests.</li>
-      </ul>
-      <p>We do not integrate with any advertising networks, analytics platforms (e.g. Google Analytics, Mixpanel), crash-reporting services (e.g. Sentry), or any monetization trackers.</p>
-    </section>
-
-    <!-- 8 -->
-    <section class="pp-section" id="children">
-      <h2><span class="sec-num">8</span> Children's Privacy</h2>
-      <p>Classroom Pro Downloader is designed to be used with Google Classroom, which is widely used by students of all ages, including children under 13. In compliance with the Children's Online Privacy Protection Act (COPPA) and similar regulations:</p>
-      <ul>
-        <li>The extension does not collect any personal information from any user, including children.</li>
-        <li>No registration, account creation, or submission of personal data is required.</li>
-        <li>Parental or institutional consent is governed by the Google Workspace for Education account policies under which the student's Google account is managed.</li>
-      </ul>
-    </section>
-
-    <!-- 9 -->
-    <section class="pp-section" id="data-retention">
-      <h2><span class="sec-num">9</span> Data Retention &amp; Deletion</h2>
-      <p>Classroom Pro Downloader retains data only as follows:</p>
-      <ul>
-        <li><strong>Google API Data (course info, file metadata, file content):</strong> Retained in browser memory <strong>only during active use</strong>. All data is released from memory immediately after the ZIP download completes or the browser tab is closed. No Google API data is ever persisted to disk or stored beyond the active session.</li>
-        <li><strong>OAuth Access Tokens:</strong> Managed by the browser's built-in identity system (<code>chrome.identity</code>). Tokens are session-scoped and are automatically invalidated when the browser session ends. You can also manually revoke tokens at <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a>.</li>
-        <li><strong>Local Preferences &amp; History:</strong> User preferences (export format, file-type filters) and download history (up to 50 entries) are stored locally via <code>chrome.storage.local</code>. These contain <strong>no sensitive data</strong> — only setting values, course names, file counts, and timestamps.</li>
-      </ul>
-      <h3>How to Delete Your Data</h3>
-      <p>You have full control over all data associated with the extension:</p>
-      <ul>
-        <li><strong>Clear local preferences and history:</strong> Open the extension's Options page (⚙️ gear icon) and use the "Reset" or "Clear History" buttons.</li>
-        <li><strong>Revoke Google account access:</strong> Visit <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">myaccount.google.com/permissions</a> and remove "Classroom Pro Downloader" from your authorized applications.</li>
-        <li><strong>Complete data removal:</strong> Uninstalling the extension automatically and permanently removes all locally stored data (preferences, history). Combined with revoking Google access above, this constitutes a complete deletion of all data associated with the extension.</li>
-      </ul>
-      <div class="callout callout-blue">
-        <strong>Data Deletion Requests:</strong> If you need assistance with data deletion or have any concerns, contact us at <a href="mailto:mohsinkhan.devs@gmail.com">mohsinkhan.devs@gmail.com</a>. We will respond within <strong>5 business days</strong>.
-      </div>
-    </section>
-
-    <!-- 10 -->
-    <section class="pp-section" id="changes">
-      <h2><span class="sec-num">10</span> Changes to This Policy</h2>
-      <p>If we introduce new features that require additional permissions or change how data is handled, this Privacy Policy will be updated and the "Effective Date" at the top will be revised accordingly.</p>
-      <p>Because we do not collect your email address, you will be notified of material permission changes via:</p>
-      <ul>
-        <li>Browser permission prompts when the extension updates to a new version.</li>
-        <li>Update notes published in the Chrome Web Store listing.</li>
-        <li>An in-extension announcement banner (if applicable).</li>
-      </ul>
-      <p>Continued use of the extension after a policy update constitutes acceptance of the revised policy. If you do not accept the revised policy, please uninstall the extension.</p>
-    </section>
-
-    <!-- 11 -->
-    <section class="pp-section" id="contact">
-      <h2><span class="sec-num">11</span> Contact</h2>
-      <p>If you have any questions, concerns, or requests relating to this Privacy Policy or the extension's data practices, please contact the Developer directly:</p>
-      <ul>
-        <li><strong>Developer:</strong> Mohsin Khan</li>
-        <li><strong>Email:</strong> <a href="mailto:mohsinkhan.devs@gmail.com">mohsinkhan.devs@gmail.com</a></li>
-        <li><strong>Website:</strong> <a href="https://classroom.mohsinkhandevs.com" target="_blank" rel="noopener noreferrer">classroom.mohsinkhandevs.com</a></li>
-        <li><strong>Feature Requests / Feedback:</strong> <a href="https://forms.gle/VzWq2Uxu9GXkv4XB7" target="_blank" rel="noopener noreferrer">Submit via Google Form</a></li>
-      </ul>
-      <div class="callout callout-blue">
-        We aim to respond to all privacy-related inquiries within <strong>5 business days</strong>.
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <div class="pp-footer">
-      <p>© 2025–2026 Mohsin Khan. All rights reserved. &nbsp;·&nbsp;
-        <a href="/">Home Page</a> &nbsp;·&nbsp;
-        <a href="/tos">Terms of Service</a>
-      </p>
-      <p style="margin-top:8px;">Classroom Pro Downloader is not affiliated with, endorsed by, or sponsored by Google LLC.</p>
-    </div>
-
-  </main>
-</div>
-
-<script>
-  // Highlight active TOC link on scroll
-  const sections = document.querySelectorAll('.pp-section, .pp-header');
-  const tocLinks = document.querySelectorAll('.toc-list a');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        tocLinks.forEach(link => link.classList.remove('active'));
-        const id = entry.target.id;
-        const activeLink = document.querySelector(`.toc-list a[href="#${id}"]`);
-        if (activeLink) activeLink.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-20% 0px -70% 0px' });
-
-  sections.forEach(sec => observer.observe(sec));
-</script>
+    sections.forEach(sec => observer.observe(sec));
+  </script>
 </body>
 </html>

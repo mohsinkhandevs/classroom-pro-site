@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/privacy", "destination": "/privacy/index.html" },
     { "source": "/tos",  "destination": "/tos/index.html" },
+    { "source": "/support", "destination": "/support/index.html" },
     { "source": "/",     "destination": "/home/index.html" }
   ]
 }
