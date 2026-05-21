@@ -15,6 +15,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   background-color: #030712;
+  scroll-padding-top: 80px; /* Leave room for the fixed navigation bar (70px + 10px buffer) */
 }
 
 body {
@@ -242,8 +243,9 @@ img {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 32px;
+  gap: 24px; /* Reduced from 32px to prevent overlapping on medium viewports */
   margin-left: auto;
+  margin-right: 24px; /* Added spacing between the links and the CTA button to prevent overlap */
   align-items: center;
 }
 
@@ -1286,7 +1288,7 @@ img {
 }
 
 /* ─── Responsive Media Queries ─── */
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
   .nav-links, .btn-nav {
     display: none;
   }
